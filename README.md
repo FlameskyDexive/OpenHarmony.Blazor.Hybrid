@@ -1,3 +1,5 @@
+**项目已归档，原因参考：https://github.com/OpenHarmony-NET/.github/blob/main/profile/README.md**
+
 ## Blazor Hybrid
 
 适配工作已经完成，欢迎大家体验！
