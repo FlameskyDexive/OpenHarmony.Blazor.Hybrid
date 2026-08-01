@@ -23,6 +23,9 @@ CI 会对 API15/18/20/23/26 与 arm64-v8a/x86_64 的十种组合执行
 NativeAOT 发布。手动触发设备验收时，专用 runner 会构建签名 HAP，分别在
 API26 arm64 真机和 x86_64 模拟器上验证启动、GC、线程、文件、网络栈、ICU、
 HiLog、IPC parcel 与回调往返，并上传带依赖提交 SHA-256 的验收证据。
-设备 runner 需要完整的 HarmonyOS/DevEco SDK、HDC、Hvigor，并通过仓库 secret
+设备 runner 的 `DEVECO_SDK_HOME` 必须指向 DevEco SDK 父目录（例如
+`C:\Program Files\Huawei\DevEco Studio\sdk`），该目录下应存在
+`default\sdk-pkg.json`、`default\openharmony` 和 `default\hms`；不要指向
+`...\sdk\default` 或 OpenHarmony SDK 目录。设备 runner 还需要 HDC、Hvigor，并通过仓库 secret
 `HARMONYOS_SIGNING_CONFIG_JSON` 提供 `default` 签名配置；证书、profile 和密钥库
 路径必须在两个专用 runner 上可访问。

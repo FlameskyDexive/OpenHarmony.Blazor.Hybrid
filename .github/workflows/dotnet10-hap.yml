@@ -118,7 +118,12 @@ jobs:
         env:
           HARMONYOS_SIGNING_CONFIG_JSON: ${{ secrets.HARMONYOS_SIGNING_CONFIG_JSON }}
         run: |
-          if (-not $env:DEVECO_SDK_HOME -or -not (Test-Path -LiteralPath $env:DEVECO_SDK_HOME)) { throw 'DEVECO_SDK_HOME must point to a complete HarmonyOS SDK, including HMS components.' }
+          if (-not $env:DEVECO_SDK_HOME -or -not (Test-Path -LiteralPath $env:DEVECO_SDK_HOME)) { throw 'DEVECO_SDK_HOME must point to the DevEco SDK parent directory.' }
+          $sdkManifest = Join-Path $env:DEVECO_SDK_HOME 'default\sdk-pkg.json'
+          if (-not (Test-Path -LiteralPath $sdkManifest)) { throw "DEVECO_SDK_HOME must be the DevEco SDK parent containing default\sdk-pkg.json; received '$env:DEVECO_SDK_HOME'." }
+          foreach ($component in 'openharmony', 'hms') {
+            if (-not (Test-Path -LiteralPath (Join-Path $env:DEVECO_SDK_HOME "default\$component"))) { throw ("DevEco SDK component '{0}' is missing under default." -f $component) }
+          }
           $hvigor = if ($env:HVIGORW) { $env:HVIGORW } else { (Get-Command hvigorw -ErrorAction Stop).Source }
           $buildProfilePath = 'OHOS_Project/build-profile.json5'
           $originalBuildProfile = Get-Content -LiteralPath $buildProfilePath -Raw
