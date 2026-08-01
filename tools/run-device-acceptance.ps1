@@ -9,6 +9,8 @@ param(
 
     [string] $HdcPath = 'hdc',
 
+    [string] $Target,
+
     [int] $ApiLevel = 26,
 
     [string] $EvidenceRoot = 'artifacts/device-evidence'
@@ -18,14 +20,27 @@ $ErrorActionPreference = 'Stop'
 
 function Invoke-Hdc {
     param([Parameter(Mandatory = $true)][string[]] $Arguments)
-    $output = & $HdcPath @Arguments 2>&1
+    $effectiveArguments = if ($Target -and $Arguments[0] -ne 'list') {
+        @('-t', $Target) + $Arguments
+    }
+    else {
+        $Arguments
+    }
+    $output = & $HdcPath @effectiveArguments 2>&1
     if ($LASTEXITCODE -ne 0) { throw "hdc $($Arguments -join ' ') failed:`n$($output -join [Environment]::NewLine)" }
     return @($output)
 }
 
 if (-not (Test-Path -LiteralPath $HapPath -PathType Leaf)) { throw "Signed HAP was not found: $HapPath" }
-$targets = @(Invoke-Hdc -Arguments @('list', 'targets') | ForEach-Object { $_.ToString().Trim() } | Where-Object { $_ -and $_ -ne '[Empty]' })
-if ($targets.Count -ne 1) { throw "Exactly one dedicated HDC target is required; found $($targets.Count): $($targets -join ', ')" }
+$availableTargets = @(Invoke-Hdc -Arguments @('list', 'targets') | ForEach-Object { $_.ToString().Trim() } | Where-Object { $_ -and $_ -ne '[Empty]' })
+if ($Target) {
+    if ($availableTargets -notcontains $Target) { throw "Requested HDC target '$Target' was not found; available targets: $($availableTargets -join ', ')" }
+    $targets = @($Target)
+}
+else {
+    if ($availableTargets.Count -ne 1) { throw "Exactly one dedicated HDC target is required; found $($availableTargets.Count): $($availableTargets -join ', ')" }
+    $targets = $availableTargets
+}
 
 $deviceArch = ((Invoke-Hdc -Arguments @('shell', 'uname', '-m')) -join '').Trim()
 $expectedArch = if ($Abi -eq 'arm64-v8a') { '^(aarch64|arm64)$' } else { '^x86_64$' }
