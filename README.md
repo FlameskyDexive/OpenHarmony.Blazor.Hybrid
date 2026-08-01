@@ -33,5 +33,5 @@ HiLog、IPC parcel 与回调往返，并上传带依赖提交 SHA-256 的验收�
 签名 profile，并通过 CMS SignerId 定位实际 HAP signer 证书；profile 授权证书与该 signer 的
 SubjectPublicKeyInfo 身份必须一致。schema v3 证据会绑定 sample source commit、run ID、验收 producer、签名 policy、HDC、Java、HAP 私有快照、profile 授权证书、CMS signer
 证书、双方 SPKI、证书链、签名 profile、验签与 signer 解析日志、解析器和 verifier 的 SHA-256；
-验签失败时不会调用 HDC。设备脚本会先卸载旧 bundle，要求 `hdc install`、HiLog reset 和 `aa start` 输出明确且不矛盾的成功语义，并且只接受来自新启动 bundle 唯一 PID、source commit 与当前 run ID 都匹配的 `Dotnet10Smoke`。
+验签失败时不会调用 HDC。设备脚本会先验证已安装 bundle 清单；旧 bundle 存在时必须成功卸载，不存在时记录 `already-absent`，并要求 `hdc install`、HiLog reset 和 `aa start` 输出明确且不矛盾的成功语义，只接受来自新启动 bundle 唯一 PID、source commit 与当前 run ID 都匹配的 `Dotnet10Smoke`。
 CI artifact 仅发布哈希证据 JSON、规范化的 smoke 状态记录和不含异常原文的 workflow 阶段状态；原始 HAP、profile、证书、验签/HDC/系统 HiLog、PID 和 HDC target 标识只在 runner temp 的受控私有证据目录中留存，不会上传或提交。

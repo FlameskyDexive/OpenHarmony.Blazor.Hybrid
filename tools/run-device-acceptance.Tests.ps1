@@ -26,7 +26,14 @@ if ($Arguments -contains 'param') {
     '26'
     exit 0
 }
+if ($Arguments -contains 'bm' -and $Arguments -contains 'dump' -and $Arguments -contains '-a') {
+    if ($env:FAKE_BUNDLE_QUERY_INVALID -eq '1') { exit 0 }
+    'ID: 100:'
+    if ($env:FAKE_BUNDLE_ABSENT -ne '1') { "`tcom.example.blazorapp" }
+    exit 0
+}
 if ($Arguments -contains 'uninstall') {
+    Set-Content -LiteralPath (Join-Path $PSScriptRoot 'uninstall-called.txt') -Value called -Encoding ASCII
     Remove-Item -LiteralPath (Join-Path $PSScriptRoot 'installed-hap.txt') -Force -ErrorAction SilentlyContinue
     '[Info]App uninstall path: msg:uninstall bundle successfully.'
     'AppMod finish'
@@ -275,6 +282,59 @@ throw "Unexpected signer command: $($Arguments -join ' ')"
             }
         }
 
+        $absentEvidence = Join-Path $TestDrive 'bundle-absent-evidence'
+        Remove-Item -LiteralPath (Join-Path $TestDrive 'uninstall-called.txt'), (Join-Path $TestDrive 'installed-hap.txt') -Force -ErrorAction SilentlyContinue
+        $env:FAKE_BUNDLE_ABSENT = '1'
+        try {
+            & $script -Abi x86_64 -HapPath $hap -HdcPath $fakeHdc -Target '127.0.0.1:5557' -ApiLevel 26 -EvidenceRoot $absentEvidence -JavaPath $fakeJava -HapSignToolPath $signTool -SampleCommit '0123456789abcdef0123456789abcdef01234567' -EvidenceRunId 'pester-api26-x86_64' -PrivateEvidenceRoot (Join-Path $TestDrive 'bundle-absent-private') | Out-Null
+        }
+        finally {
+            Remove-Item Env:FAKE_BUNDLE_ABSENT -ErrorAction SilentlyContinue
+        }
+        if (Test-Path -LiteralPath (Join-Path $TestDrive 'uninstall-called.txt')) {
+            throw 'Uninstall was called even though the bundle query proved the app was absent.'
+        }
+        $absentResult = Get-Content -LiteralPath (Join-Path $absentEvidence 'api26-x86_64-evidence.json') -Raw | ConvertFrom-Json
+        if ($absentResult.uninstallAttestation.status -cne 'PASS' -or
+            $absentResult.uninstallAttestation.semanticResult -cne 'already-absent' -or
+            [string]::IsNullOrWhiteSpace([string]$absentResult.uninstallAttestation.outputSha256)) {
+            throw 'Bundle-absent acceptance did not record an exact already-absent attestation with an output hash.'
+        }
+        $absentAttestationPath = Join-Path $TestDrive 'bundle-absent-private\hdc-uninstall-attestation.txt'
+        if (-not (Test-Path -LiteralPath (Join-Path $TestDrive 'bundle-absent-private\hdc-bundle-query.txt')) -or
+            -not (Test-Path -LiteralPath $absentAttestationPath)) {
+            throw 'Bundle-absent acceptance did not retain its bundle query and normalized attestation privately.'
+        }
+        if ((Get-FileHash -LiteralPath $absentAttestationPath -Algorithm SHA256).Hash.ToLowerInvariant() -cne
+            $absentResult.uninstallAttestation.outputSha256) {
+            throw 'Bundle-absent acceptance did not bind the public attestation to its normalized private record.'
+        }
+
+        $invalidQueryEvidence = Join-Path $TestDrive 'bundle-query-invalid-evidence'
+        Remove-Item -LiteralPath (Join-Path $TestDrive 'installed-hap.txt') -Force -ErrorAction SilentlyContinue
+        $env:FAKE_BUNDLE_QUERY_INVALID = '1'
+        $invalidQueryFailure = $null
+        try {
+            & $script -Abi x86_64 -HapPath $hap -HdcPath $fakeHdc -Target '127.0.0.1:5557' -ApiLevel 26 -EvidenceRoot $invalidQueryEvidence -JavaPath $fakeJava -HapSignToolPath $signTool -SampleCommit '0123456789abcdef0123456789abcdef01234567' -EvidenceRunId 'pester-bundle-query-invalid' -PrivateEvidenceRoot (Join-Path $TestDrive 'bundle-query-invalid-private') | Out-Null
+        }
+        catch {
+            $invalidQueryFailure = $_.Exception.Message
+        }
+        finally {
+            Remove-Item Env:FAKE_BUNDLE_QUERY_INVALID -ErrorAction SilentlyContinue
+        }
+        if ($invalidQueryFailure -notlike '*did not return a recognizable bundle list*') {
+            throw "Expected malformed bundle query failure, received: $invalidQueryFailure"
+        }
+        if (Test-Path -LiteralPath (Join-Path $TestDrive 'installed-hap.txt')) {
+            throw 'Installation was attempted after the bundle query returned an unrecognizable response.'
+        }
+        foreach ($name in 'api26-x86_64-evidence.json', 'api26-x86_64-hilog.txt') {
+            if (Test-Path -LiteralPath (Join-Path $invalidQueryEvidence $name)) {
+                throw "Public PASS evidence was written after a malformed bundle query: $name"
+            }
+        }
+
         $installErrorEvidence = Join-Path $TestDrive 'install-error-evidence'
         New-Item -ItemType Directory -Path $installErrorEvidence | Out-Null
         Set-Content -LiteralPath (Join-Path $installErrorEvidence 'api26-x86_64-evidence.json') -Value '{"result":"STALE_PASS"}' -Encoding ASCII
@@ -331,8 +391,8 @@ throw "Unexpected signer command: $($Arguments -join ' ')"
         $source = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'run-device-acceptance.ps1') -Raw
 
         foreach ($token in @(
+            "'bm', 'dump', '-a'",
             'uninstall bundle successfully.',
-            'uninstall missing installed bundle.',
             'install bundle successfully.',
             'start ability successfully.')) {
             if ($source.IndexOf($token, [StringComparison]::Ordinal) -lt 0) {
@@ -341,6 +401,9 @@ throw "Unexpected signer command: $($Arguments -join ' ')"
         }
         if ($source.IndexOf('msg:error:', [StringComparison]::Ordinal) -lt 0) {
             throw 'Acceptance script does not reject HDC semantic errors returned with exit code zero.'
+        }
+        if ($source.IndexOf('uninstall missing installed bundle.', [StringComparison]::Ordinal) -ge 0) {
+            throw 'Acceptance script still treats a missing-bundle uninstall error as success.'
         }
     }
 

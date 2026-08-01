@@ -183,17 +183,30 @@ try {
     $deviceApi = [int]$Matches[0]
     if ($deviceApi -ne $ApiLevel) { throw "Expected HarmonyOS API $ApiLevel target, found API $deviceApi." }
 
-    $uninstallResult = Invoke-Hdc -Arguments @('uninstall', $bundleName)
-    Assert-HdcSemanticResult -Result $uninstallResult -Operation 'uninstall' -AllowedResults @(
-        'uninstall bundle successfully.',
-        'uninstall missing installed bundle.')
-    $uninstallSemanticResult = if ($uninstallResult.Text.IndexOf('uninstall bundle successfully.', [StringComparison]::Ordinal) -ge 0) {
-        'removed-existing'
+    $bundleQueryResult = Invoke-Hdc -Arguments @('shell', 'bm', 'dump', '-a')
+    Save-PrivateOutput -Name 'hdc-bundle-query.txt' -Value $bundleQueryResult.Text | Out-Null
+    if (@($bundleQueryResult.Output | Where-Object { $_.Trim() -match '^ID:\s*\d+:$' }).Count -eq 0) {
+        throw 'The installed bundle query did not return a recognizable bundle list.'
+    }
+    $bundleMatches = @($bundleQueryResult.Output | Where-Object {
+        $_.Trim().Equals($bundleName, [StringComparison]::Ordinal)
+    })
+    if ($bundleMatches.Count -gt 1) {
+        throw 'The installed bundle query returned the expected bundle more than once.'
+    }
+    if ($bundleMatches.Count -eq 1) {
+        $uninstallResult = Invoke-Hdc -Arguments @('uninstall', $bundleName)
+        Assert-HdcSemanticResult -Result $uninstallResult -Operation 'uninstall' -AllowedResults @(
+            'uninstall bundle successfully.')
+        $uninstallSemanticResult = 'removed-existing'
+        $uninstallOutputSha256 = (Save-PrivateOutput -Name 'hdc-uninstall.txt' -Value $uninstallResult.Text).Sha256
     }
     else {
-        'already-absent'
+        $uninstallSemanticResult = 'already-absent'
+        $uninstallOutputSha256 = (Save-PrivateOutput `
+            -Name 'hdc-uninstall-attestation.txt' `
+            -Value ("bundle={0};installed=False" -f $bundleName)).Sha256
     }
-    $uninstallOutput = Save-PrivateOutput -Name 'hdc-uninstall.txt' -Value $uninstallResult.Text
 
     $preInstallProcessResult = Invoke-Hdc -Arguments @('shell', 'pidof', $bundleName)
     $preInstallProcesses = @($preInstallProcessResult.Text -split '\s+' | Where-Object { $_ })
@@ -337,7 +350,7 @@ try {
         uninstallAttestation = [ordered]@{
             status = 'PASS'
             semanticResult = $uninstallSemanticResult
-            outputSha256 = $uninstallOutput.Sha256
+            outputSha256 = $uninstallOutputSha256
         }
         installAttestation = [ordered]@{
             status = 'PASS'
