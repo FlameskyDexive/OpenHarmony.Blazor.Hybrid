@@ -1,0 +1,68 @@
+{
+    "schemaVersion":  3,
+    "result":  "PASS",
+    "evidenceRunId":  "a4c0bd6-local-api26-x86_64",
+    "completedAtUtc":  "2026-08-01T14:42:46.4043696Z",
+    "sampleCommit":  "a4c0bd61e77211d0cb24aa6c8ee687a25d62cb3d",
+    "evidenceProducerSha256":  "c1fcf1504438a6c8eb2434c04baac1b1bd483cf317b42db3f6971581baca39e7",
+    "signaturePolicySha256":  "234e1807b2af2f9056c7086863288acaa1a33a5824e7bf4a5b732328682669e1",
+    "hdcExecutableSha256":  "f160f9ecd368f6c55fa2eac961ad3cca83cb9dcdb90caec67d2931da825ab389",
+    "javaExecutableSha256":  "6eb3d4bbd1cc7d292aafb8067889dd87195f19c9ab46da07c4bc83756177041b",
+    "privateEvidenceManifestSha256":  "c68f8d697c7805186c04089931207cbc25bf1aadee58f0d53e056178a77968bd",
+    "privateEvidenceRetention":  "controlled-local",
+    "apiLevel":  26,
+    "abi":  "x86_64",
+    "architecture":  "x86_64",
+    "bundleName":  "com.example.blazorapp",
+    "hapSnapshotSha256":  "9ccd371aee612bfa1bbc6b3a69809d3c52a0894d22fbc11d2c28e5d8f6cca5ea",
+    "hapArtifactRetention":  "controlled-local",
+    "signatureVerified":  true,
+    "signatureAttestation":  {
+                                 "status":  "PASS",
+                                 "verifier":  "hap-sign-tool verify-app and verify-profile",
+                                 "outputSha256":  "632283f0875e0e06f56c306ab5440ff2cc58c07d2f60e11b82e3b91ec222305b"
+                             },
+    "uninstallAttestation":  {
+                                 "status":  "PASS",
+                                 "semanticResult":  "already-absent",
+                                 "outputSha256":  "5802e90ee503550c09845dbb45c746eb64b3b559e01db4dd7d2f6fc0b2dc1b1e"
+                             },
+    "installAttestation":  {
+                               "status":  "PASS",
+                               "semanticResult":  "install bundle successfully.",
+                               "outputSha256":  "65ab371ffc518eafbf4ee6980691cdc3b19fc72837f180de1260f031af1bc059"
+                           },
+    "launchAttestation":  {
+                              "status":  "PASS",
+                              "semanticResult":  "start ability successfully.",
+                              "outputSha256":  "2ec07f676e086753e998d5a5feff729fb80e0a0389627488f293cf8d61a3949a"
+                          },
+    "processAttestation":  {
+                               "status":  "PASS",
+                               "bundleName":  "com.example.blazorapp",
+                               "processCount":  1,
+                               "pidBound":  true
+                           },
+    "smokeAttestation":  {
+                             "status":  "PASS",
+                             "pidBound":  true,
+                             "hilogSha256":  "709da904f400b239cf61b79d11a129225df690def9ee2f55e2e87c1f12cf49fb"
+                         },
+    "certificateChainSha256":  "c8786c2f7995832244532be868b61abf3911dc3072e928e82530f6b4f713ce4d",
+    "profileCertificateSha256":  "b2242708021fcc788b890ac7de63e62110090a414c8490febeb3852cc6ce28c9",
+    "signerCertificateSha256":  "8e93863fc32ee238060bf69a9b37e2608fffb21f93c862dd511cbac9f30024b5",
+    "profilePublicKeySha256":  "67cfa9fffa8f817f5fd3ab37ad8dc686cd01153d3cb453bd851004f3fb93fa7e",
+    "signerPublicKeySha256":  "67cfa9fffa8f817f5fd3ab37ad8dc686cd01153d3cb453bd851004f3fb93fa7e",
+    "signerResolutionLogSha256":  "f004e09dc009205da2718dc380b5dcb67771a92ee5104fcaa913675291a4b303",
+    "signerResolverSha256":  "f754f46cd5f8a5382bce3a2c50f0c61d769888111758268d86f799995ec7e19a",
+    "signingProfileSha256":  "0b173124174986f0409d49fb85b44c7547040960af8485bdca3e671cf4cb5409",
+    "signingProfileVerificationSha256":  "87371962f6a54dacfeee1147c98fbc3cebb1ac6f964418e2ffd726f4933b996c",
+    "signingProfileVerificationLogSha256":  "457d6c1d1109a67e03cae7e223f6295fc3f3312413a7d1af2ac1d01d70920f45",
+    "signatureVerificationLogSha256":  "632283f0875e0e06f56c306ab5440ff2cc58c07d2f60e11b82e3b91ec222305b",
+    "signatureVerifierSha256":  "2b35f5ae7c64ec24ef7a3deb129c22fe7c3acc265a3a9e0003bfecf9429776d7",
+    "hilogSha256":  "709da904f400b239cf61b79d11a129225df690def9ee2f55e2e87c1f12cf49fb",
+    "runtimeSourceCommit":  "76bde136efafd0e193234e38d169752b93e3bce6",
+    "runtimePackageCommit":  "ee65d55",
+    "bindingsCommit":  "2b68d3c",
+    "publishAotCrossCommit":  "94e69fb"
+}

@@ -1,0 +1,1 @@
+status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=a4c0bd61e77211d0cb24aa6c8ee687a25d62cb3d;run=a4c0bd6-local-api26-x86_64;runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6;runtimePackage=ee65d55;bindings=2b68d3c;publishAot=94e69fb;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True
