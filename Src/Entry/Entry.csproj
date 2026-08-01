@@ -18,7 +18,39 @@
 		<!-- The SDK imports PublishProfile during target execution. The profile
 		     is preloaded above so custom runtime targets see RID/ABI at evaluation. -->
 		<WebPublishProfileFile Condition="'$(PublishProfile)' != '' and Exists('Properties\PublishProfiles\$(PublishProfile).pubxml')">$(MSBuildProjectDirectory)\Properties\PublishProfiles\__preloaded__.pubxml</WebPublishProfileFile>
+		<_OpenHarmonyBuildAbi Condition="'$(OpenHarmonyAbi)' == ''">unknown</_OpenHarmonyBuildAbi>
+		<_OpenHarmonyBuildAbi Condition="'$(OpenHarmonyAbi)' != ''">$(OpenHarmonyAbi)</_OpenHarmonyBuildAbi>
+		<OpenHarmonyRuntimeSourceCommit>a9c01b20cc8aa9ca03955c9f55626bfd517619c9</OpenHarmonyRuntimeSourceCommit>
+		<OpenHarmonyRuntimePackageCommit>e13ef07</OpenHarmonyRuntimePackageCommit>
+		<OpenHarmonyBindingsCommit>2b68d3c</OpenHarmonyBindingsCommit>
+		<PublishAotCrossCommit>94e69fb</PublishAotCrossCommit>
 	</PropertyGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonyApiLevel</_Parameter1>
+			<_Parameter2>$(OpenHarmonyApiLevel)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonyAbi</_Parameter1>
+			<_Parameter2>$(_OpenHarmonyBuildAbi)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonyRuntimeSourceCommit</_Parameter1>
+			<_Parameter2>$(OpenHarmonyRuntimeSourceCommit)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonyRuntimePackageCommit</_Parameter1>
+			<_Parameter2>$(OpenHarmonyRuntimePackageCommit)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonyBindingsCommit</_Parameter1>
+			<_Parameter2>$(OpenHarmonyBindingsCommit)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>PublishAotCrossCommit</_Parameter1>
+			<_Parameter2>$(PublishAotCrossCommit)</_Parameter2>
+		</AssemblyAttribute>
+	</ItemGroup>
 	<Target Name="MarkOpenHarmonyPublishProfileImported"
 			BeforeTargets="PrepareForPublish"
 			Condition="'$(PublishProfile)' != '' and Exists('Properties\PublishProfiles\$(PublishProfile).pubxml')">

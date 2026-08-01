@@ -18,3 +18,11 @@ dotnet publish Src/Entry/Entry.csproj -p:PublishProfile=PublishApi26 -p:OpenHarm
 发布结果会复制到 HAP 的 `resfile/wwwroot/{arm64-v8a,x86_64}`。HAP 的 compatible SDK 最低设为 API15，两个 ABI 已保留在 `OHOS_Project/entry/build-profile.json5`。
 
 设备安装、启动、HDC 日志和网络/IPC/回调 smoke 需要连接 API26 真机或 x86_64 模拟器后执行；当前工作站没有连接目标设备。
+
+CI 会对 API15/18/20/23/26 与 arm64-v8a/x86_64 的十种组合执行
+NativeAOT 发布。手动触发设备验收时，专用 runner 会构建签名 HAP，分别在
+API26 arm64 真机和 x86_64 模拟器上验证启动、GC、线程、文件、网络栈、ICU、
+HiLog、IPC parcel 与回调往返，并上传带依赖提交 SHA-256 的验收证据。
+设备 runner 需要完整的 HarmonyOS/DevEco SDK、HDC、Hvigor，并通过仓库 secret
+`HARMONYOS_SIGNING_CONFIG_JSON` 提供 `default` 签名配置；证书、profile 和密钥库
+路径必须在两个专用 runner 上可访问。
