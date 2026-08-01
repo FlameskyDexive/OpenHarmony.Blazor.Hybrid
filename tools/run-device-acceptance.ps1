@@ -13,7 +13,12 @@ param(
 
     [int] $ApiLevel = 26,
 
-    [string] $EvidenceRoot = 'artifacts/device-evidence'
+    [string] $EvidenceRoot = 'artifacts/device-evidence',
+
+    [string] $JavaPath = 'java',
+
+    [Parameter(Mandatory = $true)]
+    [string] $HapSignToolPath
 )
 
 $ErrorActionPreference = 'Stop'
@@ -32,6 +37,13 @@ function Invoke-Hdc {
 }
 
 if (-not (Test-Path -LiteralPath $HapPath -PathType Leaf)) { throw "Signed HAP was not found: $HapPath" }
+New-Item -ItemType Directory -Path $EvidenceRoot -Force | Out-Null
+$signature = & (Join-Path $PSScriptRoot 'verify-hap-signature.ps1') `
+    -HapPath $HapPath `
+    -HapSignToolPath $HapSignToolPath `
+    -JavaPath $JavaPath `
+    -OutputDirectory $EvidenceRoot `
+    -ArtifactPrefix "api$ApiLevel-$Abi"
 $availableTargets = @(Invoke-Hdc -Arguments @('list', 'targets') | ForEach-Object { $_.ToString().Trim() } | Where-Object { $_ -and $_ -ne '[Empty]' })
 if ($Target) {
     if ($availableTargets -notcontains $Target) { throw "Requested HDC target '$Target' was not found; available targets: $($availableTargets -join ', ')" }
@@ -55,10 +67,25 @@ Invoke-Hdc -Arguments @('shell', 'hilog', '-r') | Out-Null
 Invoke-Hdc -Arguments @('install', '-r', (Resolve-Path -LiteralPath $HapPath).Path) | Out-Null
 Invoke-Hdc -Arguments @('shell', 'aa', 'start', '-a', 'EntryAbility', '-b', 'com.example.blazorapp') | Out-Null
 Start-Sleep -Seconds 10
-$log = (Invoke-Hdc -Arguments @('shell', 'hilog', '-x')) -join [Environment]::NewLine
+$expectedManagedArchitecture = if ($Abi -eq 'arm64-v8a') { 'Arm64' } else { 'X64' }
+$smokePattern = '^\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\.\d{3}\s+\d+\s+\d+\s+[A-Z]\s+A00000/Dotnet10Smoke:\s*(?<payload>' +
+    'status=PASS;runtime=10\.\d+\.\d+;arch=' + [regex]::Escape($expectedManagedArchitecture) +
+    ';api=' + $ApiLevel +
+    ';abi=' + [regex]::Escape($Abi) +
+    ';runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6' +
+    ';runtimePackage=ee65d55;bindings=2b68d3c;publishAot=94e69fb' +
+    ';startup=True;gc=True;thread=True;file=True;network=True;icu=True' +
+    ';hilog=True;ipc=True;callback=True)\s*$'
+$smokeRecords = @(Invoke-Hdc -Arguments @('shell', 'hilog', '-x') | ForEach-Object {
+    $match = [regex]::Match($_.ToString(), $smokePattern)
+    if ($match.Success) { $match.Groups['payload'].Value }
+})
+if ($smokeRecords.Count -ne 1) {
+    throw "Expected exactly one valid Dotnet10Smoke record, found $($smokeRecords.Count)."
+}
+$log = $smokeRecords[0]
 
 $required = @(
-    'Dotnet10Smoke',
     'status=PASS',
     'runtime=10.',
     "api=$ApiLevel",
@@ -85,13 +112,27 @@ New-Item -ItemType Directory -Path $EvidenceRoot -Force | Out-Null
 $logPath = Join-Path $EvidenceRoot "api$ApiLevel-$Abi-hilog.txt"
 [IO.File]::WriteAllText($logPath, $log, [Text.UTF8Encoding]::new($false))
 $evidence = [ordered]@{
-    schemaVersion = 1
+    schemaVersion = 2
     result = 'PASS'
-    target = $targets[0]
+    targetSha256 = (Get-FileHash -InputStream ([IO.MemoryStream]::new(
+        [Text.Encoding]::UTF8.GetBytes($targets[0]))) -Algorithm SHA256).Hash.ToLowerInvariant()
     apiLevel = $deviceApi
     abi = $Abi
     architecture = $deviceArch
     hapSha256 = (Get-FileHash -LiteralPath $HapPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    signatureVerified = [bool]$signature.SignatureVerified
+    certificateChainSha256 = $signature.CertificateChainSha256
+    profileCertificateSha256 = $signature.ProfileCertificateSha256
+    signerCertificateSha256 = $signature.SignerCertificateSha256
+    profilePublicKeySha256 = $signature.ProfilePublicKeySha256
+    signerPublicKeySha256 = $signature.SignerPublicKeySha256
+    signerResolutionLogSha256 = $signature.SignerResolutionLogSha256
+    signerResolverSha256 = $signature.SignerResolverSha256
+    signingProfileSha256 = $signature.SigningProfileSha256
+    signingProfileVerificationSha256 = $signature.ProfileVerificationSha256
+    signingProfileVerificationLogSha256 = $signature.ProfileVerificationLogSha256
+    signatureVerificationLogSha256 = $signature.VerificationLogSha256
+    signatureVerifierSha256 = $signature.VerifierSha256
     hilogSha256 = (Get-FileHash -LiteralPath $logPath -Algorithm SHA256).Hash.ToLowerInvariant()
     runtimeSourceCommit = '76bde136efafd0e193234e38d169752b93e3bce6'
     runtimePackageCommit = 'ee65d55'

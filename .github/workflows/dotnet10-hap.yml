@@ -37,6 +37,11 @@ jobs:
           if ((git rev-parse HEAD:ThirdParty/OpenHarmony.NET.Runtime) -ne 'ee65d551e72d5d45610df97d9aa88a994062371a') { throw 'Runtime package submodule is not pinned to the accepted commit.' }
           if ((git rev-parse HEAD:ThirdParty/PublishAotCross) -ne '94e69fb8e98d3b4c5ee126392081f5e8f44c34ad') { throw 'PublishAotCross submodule is not pinned to the accepted commit.' }
           git diff --check
+      - name: Verify device acceptance contract
+        shell: powershell
+        run: |
+          Import-Module Pester -ErrorAction Stop
+          Invoke-Pester -Path ./tools/run-device-acceptance.Tests.ps1 -EnableExit
 
   host-publish:
     name: Publish API${{ matrix.api }} ${{ matrix.abi }}
@@ -48,6 +53,16 @@ jobs:
         api: [15, 18, 20, 23, 26]
         abi: [arm64-v8a, x86_64]
     steps:
+      - name: Initialize host publish evidence
+        shell: pwsh
+        run: |
+          $evidenceRoot = Join-Path $env:RUNNER_TEMP 'host-publish-evidence-api${{ matrix.api }}-${{ matrix.abi }}'
+          New-Item -ItemType Directory -Path $evidenceRoot -Force | Out-Null
+          $status = [ordered]@{ stage = 'host-publish'; status = 'initialized' }
+          [IO.File]::WriteAllText(
+            (Join-Path $evidenceRoot 'workflow-initialized.txt'),
+            (($status | ConvertTo-Json) + "`n"),
+            [Text.UTF8Encoding]::new($false))
       - uses: actions/checkout@v4
         with:
           submodules: recursive
@@ -57,7 +72,9 @@ jobs:
       - name: NativeAOT publish and stage HAP files
         shell: pwsh
         run: |
-          $sdkRoot = if ($env:OPENHARMONY_SDK_ROOT) { $env:OPENHARMONY_SDK_ROOT } else { Join-Path $env:LOCALAPPDATA 'OpenHarmony\Sdk' }
+          $evidenceRoot = Join-Path $env:RUNNER_TEMP 'host-publish-evidence-api${{ matrix.api }}-${{ matrix.abi }}'
+          try {
+            $sdkRoot = if ($env:OPENHARMONY_SDK_ROOT) { $env:OPENHARMONY_SDK_ROOT } else { Join-Path $env:LOCALAPPDATA 'OpenHarmony\Sdk' }
           $runtimeRoot = $env:OPENHARMONY_RUNTIME_PACKAGE_ROOT
           if (-not $runtimeRoot -or -not (Test-Path -LiteralPath $runtimeRoot)) { throw 'OPENHARMONY_RUNTIME_PACKAGE_ROOT must point to 10.0.10-ohos.1.' }
           dotnet publish Src/Entry/Entry.csproj -p:PublishProfile=PublishApi${{ matrix.api }} -p:OpenHarmonyAbi=${{ matrix.abi }} -p:OpenHarmonyRuntimePackageRoot="$runtimeRoot" -p:OpenHarmonySdkRoot="$sdkRoot" --verbosity minimal
@@ -83,6 +100,24 @@ jobs:
           New-Item -ItemType Directory -Force "$stage/entry/libs", "$stage/AppScope/resources/resfile/wwwroot" | Out-Null
           Copy-Item -LiteralPath "OHOS_Project/entry/libs/${{ matrix.abi }}" -Destination "$stage/entry/libs/${{ matrix.abi }}" -Recurse -Force
           Copy-Item -LiteralPath $webRoot -Destination "$stage/AppScope/resources/resfile/wwwroot/${{ matrix.abi }}" -Recurse -Force
+          }
+          catch {
+            $failure = [ordered]@{
+              stage = 'host-publish'
+              exceptionType = $_.Exception.GetType().FullName
+            }
+            [IO.File]::WriteAllText(
+              (Join-Path $evidenceRoot 'workflow-host-publish-failure.txt'),
+              (($failure | ConvertTo-Json) + "`n"),
+              [Text.UTF8Encoding]::new($false))
+            throw
+          }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: host-publish-status-api${{ matrix.api }}-${{ matrix.abi }}
+          path: ${{ runner.temp }}/host-publish-evidence-api${{ matrix.api }}-${{ matrix.abi }}/workflow-*.txt
+          if-no-files-found: error
       - uses: actions/upload-artifact@v4
         with:
           name: sample-api${{ matrix.api }}-${{ matrix.abi }}
@@ -102,6 +137,16 @@ jobs:
           - abi: x86_64
             runner: openharmony-x86_64-emulator
     steps:
+      - name: Initialize device acceptance evidence
+        shell: pwsh
+        run: |
+          $evidenceRoot = Join-Path $env:RUNNER_TEMP 'device-evidence-api26-${{ matrix.abi }}'
+          New-Item -ItemType Directory -Path $evidenceRoot -Force | Out-Null
+          $status = [ordered]@{ stage = 'device-acceptance'; status = 'initialized' }
+          [IO.File]::WriteAllText(
+            (Join-Path $evidenceRoot 'workflow-initialized.txt'),
+            (($status | ConvertTo-Json) + "`n"),
+            [Text.UTF8Encoding]::new($false))
       - uses: actions/checkout@v4
         with:
           submodules: recursive
@@ -118,7 +163,10 @@ jobs:
         env:
           HARMONYOS_SIGNING_CONFIG_JSON: ${{ secrets.HARMONYOS_SIGNING_CONFIG_JSON }}
         run: |
-          if (-not $env:DEVECO_SDK_HOME -or -not (Test-Path -LiteralPath $env:DEVECO_SDK_HOME)) { throw 'DEVECO_SDK_HOME must point to the DevEco SDK parent directory.' }
+          $evidenceRoot = Join-Path $env:RUNNER_TEMP 'device-evidence-api26-${{ matrix.abi }}'
+          New-Item -ItemType Directory -Path $evidenceRoot -Force | Out-Null
+          try {
+            if (-not $env:DEVECO_SDK_HOME -or -not (Test-Path -LiteralPath $env:DEVECO_SDK_HOME)) { throw 'DEVECO_SDK_HOME must point to the DevEco SDK parent directory.' }
           $sdkManifest = Join-Path $env:DEVECO_SDK_HOME 'default\sdk-pkg.json'
           if (-not (Test-Path -LiteralPath $sdkManifest)) { throw "DEVECO_SDK_HOME must be the DevEco SDK parent containing default\sdk-pkg.json; received '$env:DEVECO_SDK_HOME'." }
           foreach ($component in 'openharmony', 'hms') {
@@ -139,15 +187,50 @@ jobs:
           finally {
             [IO.File]::WriteAllText((Resolve-Path -LiteralPath $buildProfilePath).Path, $originalBuildProfile, [Text.UTF8Encoding]::new($false))
           }
-          $hap = Get-ChildItem OHOS_Project/entry/build -Recurse -Filter '*-signed.hap' | Select-Object -First 1
-          if (-not $hap) { throw 'A signed HAP is required for device acceptance.' }
-          "SIGNED_HAP=$($hap.FullName)" >> $env:GITHUB_ENV
+            $hap = Get-ChildItem OHOS_Project/entry/build -Recurse -Filter '*-signed.hap' | Select-Object -First 1
+            if (-not $hap) { throw 'A signed HAP is required for device acceptance.' }
+            "SIGNED_HAP=$($hap.FullName)" >> $env:GITHUB_ENV
+          }
+          catch {
+            $failure = [ordered]@{
+              stage = 'build-signed-hap'
+              exceptionType = $_.Exception.GetType().FullName
+            }
+            [IO.File]::WriteAllText(
+              (Join-Path $evidenceRoot 'workflow-build-failure.txt'),
+              (($failure | ConvertTo-Json) + "`n"),
+              [Text.UTF8Encoding]::new($false))
+            throw
+          }
       - name: Install, launch and verify runtime smoke
         shell: pwsh
         run: |
-          $hdc = if ($env:HDC) { $env:HDC } else { (Get-Command hdc -ErrorAction Stop).Source }
-          ./tools/run-device-acceptance.ps1 -Abi '${{ matrix.abi }}' -HapPath $env:SIGNED_HAP -HdcPath $hdc -ApiLevel 26 -EvidenceRoot "artifacts/device-evidence/${{ matrix.abi }}"
+          $evidenceRoot = Join-Path $env:RUNNER_TEMP 'device-evidence-api26-${{ matrix.abi }}'
+          New-Item -ItemType Directory -Path $evidenceRoot -Force | Out-Null
+          try {
+            $hdc = if ($env:HDC) { $env:HDC } else { (Get-Command hdc -ErrorAction Stop).Source }
+          $java = if ($env:JAVA_HOME) { Join-Path $env:JAVA_HOME 'bin\java.exe' } else { (Get-Command java -ErrorAction Stop).Source }
+          $hapSignTool = Join-Path $env:DEVECO_SDK_HOME 'default\openharmony\toolchains\lib\hap-sign-tool.jar'
+          if (-not (Test-Path -LiteralPath $hapSignTool -PathType Leaf)) { throw "HAP signing tool was not found: $hapSignTool" }
+            ./tools/run-device-acceptance.ps1 -Abi '${{ matrix.abi }}' -HapPath $env:SIGNED_HAP -HdcPath $hdc -ApiLevel 26 -EvidenceRoot $evidenceRoot -JavaPath $java -HapSignToolPath $hapSignTool
+          }
+          catch {
+            $failure = [ordered]@{
+              stage = 'device-acceptance-setup'
+              exceptionType = $_.Exception.GetType().FullName
+            }
+            [IO.File]::WriteAllText(
+              (Join-Path $evidenceRoot 'workflow-device-acceptance-failure.txt'),
+              (($failure | ConvertTo-Json) + "`n"),
+              [Text.UTF8Encoding]::new($false))
+            throw
+          }
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: device-evidence-api26-${{ matrix.abi }}
-          path: artifacts/device-evidence/${{ matrix.abi }}
+          path: |
+            ${{ runner.temp }}/device-evidence-api26-${{ matrix.abi }}/*-evidence.json
+            ${{ runner.temp }}/device-evidence-api26-${{ matrix.abi }}/*-hilog.txt
+            ${{ runner.temp }}/device-evidence-api26-${{ matrix.abi }}/workflow-*.txt
+          if-no-files-found: error

@@ -28,4 +28,11 @@ HiLog、IPC parcel 与回调往返，并上传带依赖提交 SHA-256 的验收�
 `default\sdk-pkg.json`、`default\openharmony` 和 `default\hms`；不要指向
 `...\sdk\default` 或 OpenHarmony SDK 目录。设备 runner 还需要 HDC、Hvigor，并通过仓库 secret
 `HARMONYOS_SIGNING_CONFIG_JSON` 提供 `default` 签名配置；证书、profile 和密钥库
-路径必须在两个专用 runner 上可访问。
+路径必须在两个专用 runner 上可访问。设备安装前，验收脚本会使用 SDK 自带的
+`hap-sign-tool.jar verify-app` 独立验证 HAP 签名，解析导出的 X.509 证书，重新验证
+签名 profile，并通过 CMS SignerId 定位实际 HAP signer 证书；profile 授权证书与该 signer 的
+SubjectPublicKeyInfo 身份必须一致。schema v2 证据会记录 HAP、profile 授权证书、CMS signer
+证书、双方 SPKI、证书链、签名 profile、验签与 signer 解析日志、解析器和 verifier 的 SHA-256；
+验签失败时不会调用 HDC。CI artifact 仅发布哈希证据 JSON、规范化的 `Dotnet10Smoke`
+状态记录和不含异常原文的 workflow 阶段状态；原始 profile、证书、验签日志、系统 HiLog
+和 HDC target 标识不会上传。
