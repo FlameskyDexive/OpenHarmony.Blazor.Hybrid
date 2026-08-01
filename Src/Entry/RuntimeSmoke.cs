@@ -71,6 +71,8 @@ public static class RuntimeSmoke
             $"arch={RuntimeInformation.ProcessArchitecture}",
             $"api={build.GetValueOrDefault("OpenHarmonyApiLevel", "unknown")}",
             $"abi={build.GetValueOrDefault("OpenHarmonyAbi", "unknown")}",
+            $"sample={build.GetValueOrDefault("OpenHarmonySampleCommit", "unknown")}",
+            $"run={build.GetValueOrDefault("OpenHarmonyEvidenceRunId", "unknown")}",
             $"runtimeSource={build.GetValueOrDefault("OpenHarmonyRuntimeSourceCommit", "unknown")}",
             $"runtimePackage={build.GetValueOrDefault("OpenHarmonyRuntimePackageCommit", "unknown")}",
             $"bindings={build.GetValueOrDefault("OpenHarmonyBindingsCommit", "unknown")}",

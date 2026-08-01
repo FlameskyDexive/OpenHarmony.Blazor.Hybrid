@@ -102,7 +102,7 @@ $log = ($output | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
 [IO.File]::WriteAllText($logPath, $log, [Text.UTF8Encoding]::new($false))
 
 if ($exitCode -ne 0) {
-    throw "HAP signature verification failed with exit code ${exitCode}:`n$log"
+    throw "HAP signature verification failed with exit code $exitCode; raw output was retained in '$ArtifactPrefix-signature-verification.txt'."
 }
 foreach ($path in $certificatePath, $profilePath) {
     if (-not (Test-Path -LiteralPath $path -PathType Leaf) -or (Get-Item -LiteralPath $path).Length -eq 0) {
@@ -132,7 +132,7 @@ finally {
 $profileLog = ($profileOutput | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
 [IO.File]::WriteAllText($profileVerificationLogPath, $profileLog, [Text.UTF8Encoding]::new($false))
 if ($profileExitCode -ne 0) {
-    throw "HAP signing profile verification failed with exit code ${profileExitCode}:`n$profileLog"
+    throw "HAP signing profile verification failed with exit code $profileExitCode; raw output was retained in '$ArtifactPrefix-profile-verification.txt'."
 }
 if (-not (Test-Path -LiteralPath $profileVerificationPath -PathType Leaf)) {
     throw 'HAP signing profile verification failed: no verification result was produced.'
@@ -141,11 +141,11 @@ try {
     $profile = Get-Content -LiteralPath $profileVerificationPath -Raw | ConvertFrom-Json
 }
 catch {
-    throw "HAP signing profile verification failed: $($_.Exception.Message)"
+    throw 'HAP signing profile verification failed: the verification result is not valid JSON.'
 }
 if ($profile.verifiedPassed -isnot [bool] -or -not $profile.verifiedPassed -or
     -not [string]::Equals([string]$profile.message, 'OK', [StringComparison]::Ordinal)) {
-    throw "HAP signing profile verification failed: $($profile.message)"
+    throw 'HAP signing profile verification failed: the verification result was not an exact PASS.'
 }
 if (-not [string]::Equals([string]$profile.content.type, 'debug', [StringComparison]::Ordinal) -or
     -not [string]::Equals([string]$profile.content.'bundle-info'.'bundle-name', 'com.example.blazorapp', [StringComparison]::Ordinal)) {
@@ -189,7 +189,7 @@ finally {
 $signerLog = ($signerOutput | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
 [IO.File]::WriteAllText($signerResolutionLogPath, $signerLog, [Text.UTF8Encoding]::new($false))
 if ($signerExitCode -ne 0) {
-    throw "HAP signer certificate resolution failed with exit code ${signerExitCode}:`n$signerLog"
+    throw "HAP signer certificate resolution failed with exit code $signerExitCode; raw output was retained in '$ArtifactPrefix-signer-resolution.txt'."
 }
 foreach ($path in $signerCertificatePath, $profilePublicKeyPath, $signerPublicKeyPath) {
     if (-not (Test-Path -LiteralPath $path -PathType Leaf) -or (Get-Item -LiteralPath $path).Length -eq 0) {

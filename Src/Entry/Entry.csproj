@@ -24,6 +24,8 @@
 		<OpenHarmonyRuntimePackageCommit>ee65d55</OpenHarmonyRuntimePackageCommit>
 		<OpenHarmonyBindingsCommit>2b68d3c</OpenHarmonyBindingsCommit>
 		<PublishAotCrossCommit>94e69fb</PublishAotCrossCommit>
+		<OpenHarmonySampleCommit Condition="'$(OpenHarmonySampleCommit)' == ''">unknown</OpenHarmonySampleCommit>
+		<OpenHarmonyEvidenceRunId Condition="'$(OpenHarmonyEvidenceRunId)' == ''">unknown</OpenHarmonyEvidenceRunId>
 	</PropertyGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
@@ -49,6 +51,14 @@
 		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
 			<_Parameter1>PublishAotCrossCommit</_Parameter1>
 			<_Parameter2>$(PublishAotCrossCommit)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonySampleCommit</_Parameter1>
+			<_Parameter2>$(OpenHarmonySampleCommit)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonyEvidenceRunId</_Parameter1>
+			<_Parameter2>$(OpenHarmonyEvidenceRunId)</_Parameter2>
 		</AssemblyAttribute>
 	</ItemGroup>
 	<Target Name="MarkOpenHarmonyPublishProfileImported"

@@ -77,7 +77,7 @@ jobs:
             $sdkRoot = if ($env:OPENHARMONY_SDK_ROOT) { $env:OPENHARMONY_SDK_ROOT } else { Join-Path $env:LOCALAPPDATA 'OpenHarmony\Sdk' }
           $runtimeRoot = $env:OPENHARMONY_RUNTIME_PACKAGE_ROOT
           if (-not $runtimeRoot -or -not (Test-Path -LiteralPath $runtimeRoot)) { throw 'OPENHARMONY_RUNTIME_PACKAGE_ROOT must point to 10.0.10-ohos.1.' }
-          dotnet publish Src/Entry/Entry.csproj -p:PublishProfile=PublishApi${{ matrix.api }} -p:OpenHarmonyAbi=${{ matrix.abi }} -p:OpenHarmonyRuntimePackageRoot="$runtimeRoot" -p:OpenHarmonySdkRoot="$sdkRoot" --verbosity minimal
+          dotnet publish Src/Entry/Entry.csproj -p:PublishProfile=PublishApi${{ matrix.api }} -p:OpenHarmonyAbi=${{ matrix.abi }} -p:OpenHarmonyRuntimePackageRoot="$runtimeRoot" -p:OpenHarmonySdkRoot="$sdkRoot" -p:OpenHarmonySampleCommit=${{ github.sha }} -p:OpenHarmonyEvidenceRunId=${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.abi }} --verbosity minimal
           if ($LASTEXITCODE -ne 0) { throw 'Sample NativeAOT publish failed.' }
           $entry = "OHOS_Project/entry/libs/${{ matrix.abi }}/Entry.so"
           $webRoot = "OHOS_Project/AppScope/resources/resfile/wwwroot/${{ matrix.abi }}"
@@ -142,6 +142,10 @@ jobs:
         run: |
           $evidenceRoot = Join-Path $env:RUNNER_TEMP 'device-evidence-api26-${{ matrix.abi }}'
           New-Item -ItemType Directory -Path $evidenceRoot -Force | Out-Null
+          Remove-Item -LiteralPath `
+            (Join-Path $evidenceRoot 'api26-${{ matrix.abi }}-evidence.json'), `
+            (Join-Path $evidenceRoot 'api26-${{ matrix.abi }}-hilog.txt') `
+            -Force -ErrorAction SilentlyContinue
           $status = [ordered]@{ stage = 'device-acceptance'; status = 'initialized' }
           [IO.File]::WriteAllText(
             (Join-Path $evidenceRoot 'workflow-initialized.txt'),
@@ -206,13 +210,15 @@ jobs:
         shell: pwsh
         run: |
           $evidenceRoot = Join-Path $env:RUNNER_TEMP 'device-evidence-api26-${{ matrix.abi }}'
+          $privateEvidenceRoot = Join-Path $env:RUNNER_TEMP 'device-acceptance-private-api26-${{ matrix.abi }}-${{ github.run_id }}-${{ github.run_attempt }}'
           New-Item -ItemType Directory -Path $evidenceRoot -Force | Out-Null
+          New-Item -ItemType Directory -Path $privateEvidenceRoot -Force | Out-Null
           try {
             $hdc = if ($env:HDC) { $env:HDC } else { (Get-Command hdc -ErrorAction Stop).Source }
           $java = if ($env:JAVA_HOME) { Join-Path $env:JAVA_HOME 'bin\java.exe' } else { (Get-Command java -ErrorAction Stop).Source }
           $hapSignTool = Join-Path $env:DEVECO_SDK_HOME 'default\openharmony\toolchains\lib\hap-sign-tool.jar'
           if (-not (Test-Path -LiteralPath $hapSignTool -PathType Leaf)) { throw "HAP signing tool was not found: $hapSignTool" }
-            ./tools/run-device-acceptance.ps1 -Abi '${{ matrix.abi }}' -HapPath $env:SIGNED_HAP -HdcPath $hdc -ApiLevel 26 -EvidenceRoot $evidenceRoot -JavaPath $java -HapSignToolPath $hapSignTool
+            ./tools/run-device-acceptance.ps1 -Abi '${{ matrix.abi }}' -HapPath $env:SIGNED_HAP -HdcPath $hdc -ApiLevel 26 -EvidenceRoot $evidenceRoot -JavaPath $java -HapSignToolPath $hapSignTool -SampleCommit '${{ github.sha }}' -EvidenceRunId '${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.abi }}' -PrivateEvidenceRoot $privateEvidenceRoot
           }
           catch {
             $failure = [ordered]@{

@@ -31,8 +31,7 @@ HiLog、IPC parcel 与回调往返，并上传带依赖提交 SHA-256 的验收�
 路径必须在两个专用 runner 上可访问。设备安装前，验收脚本会使用 SDK 自带的
 `hap-sign-tool.jar verify-app` 独立验证 HAP 签名，解析导出的 X.509 证书，重新验证
 签名 profile，并通过 CMS SignerId 定位实际 HAP signer 证书；profile 授权证书与该 signer 的
-SubjectPublicKeyInfo 身份必须一致。schema v2 证据会记录 HAP、profile 授权证书、CMS signer
+SubjectPublicKeyInfo 身份必须一致。schema v3 证据会绑定 sample source commit、run ID、验收 producer、签名 policy、HDC、Java、HAP 私有快照、profile 授权证书、CMS signer
 证书、双方 SPKI、证书链、签名 profile、验签与 signer 解析日志、解析器和 verifier 的 SHA-256；
-验签失败时不会调用 HDC。CI artifact 仅发布哈希证据 JSON、规范化的 `Dotnet10Smoke`
-状态记录和不含异常原文的 workflow 阶段状态；原始 profile、证书、验签日志、系统 HiLog
-和 HDC target 标识不会上传。
+验签失败时不会调用 HDC。设备脚本会先卸载旧 bundle，要求 `hdc install`、HiLog reset 和 `aa start` 输出明确且不矛盾的成功语义，并且只接受来自新启动 bundle 唯一 PID、source commit 与当前 run ID 都匹配的 `Dotnet10Smoke`。
+CI artifact 仅发布哈希证据 JSON、规范化的 smoke 状态记录和不含异常原文的 workflow 阶段状态；原始 HAP、profile、证书、验签/HDC/系统 HiLog、PID 和 HDC target 标识只在 runner temp 的受控私有证据目录中留存，不会上传或提交。

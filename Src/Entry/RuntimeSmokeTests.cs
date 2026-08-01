@@ -9,6 +9,8 @@ public static class RuntimeSmokeTests
         "arch=",
         "api=",
         "abi=",
+        "sample=",
+        "run=",
         "runtimeSource=",
         "runtimePackage=",
         "bindings=",
