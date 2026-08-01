@@ -53,7 +53,7 @@ struct Index {
           if (requestUrl.startsWith(this.baseUri)) {
             if (requestUrl == this.baseUri)
               requestUrl = `${this.baseUri}index.html`
-              let response = entry.interceptRequest(requestUrl, (code: number, message: string, mimeType: string, buffer: ArrayBuffer) : WebResourceResponse => {
+              let response: WebResourceResponse = entry.interceptRequest(requestUrl, (code: number, message: string, mimeType: string, buffer: ArrayBuffer): WebResourceResponse => {
               hilog.debug(0x0001, "BlazorHybrid", `TS: code: ${code}, message: ${message}, mimeType: ${mimeType}, ArrayBuffer len: ${buffer.byteLength}`);
               let responseWeb = new WebResourceResponse();
               responseWeb.setResponseData(buffer)
