@@ -1,17 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 	
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <PublishAot>true</PublishAot>
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <OpenHarmonyTarget>true</OpenHarmonyTarget>
+	  <OpenHarmonyApiLevel Condition="'$(OpenHarmonyApiLevel)' == ''">15</OpenHarmonyApiLevel>
 	  <JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>
+	  <StaticWebAssetsEnabled>true</StaticWebAssetsEnabled>
   </PropertyGroup>
+
+	<Import Project="Properties\PublishProfiles\$(PublishProfile).pubxml"
+			Condition="'$(PublishProfile)' != '' and Exists('Properties\PublishProfiles\$(PublishProfile).pubxml')" />
+	<PropertyGroup>
+		<!-- The SDK imports PublishProfile during target execution. The profile
+		     is preloaded above so custom runtime targets see RID/ABI at evaluation. -->
+		<WebPublishProfileFile Condition="'$(PublishProfile)' != '' and Exists('Properties\PublishProfiles\$(PublishProfile).pubxml')">$(MSBuildProjectDirectory)\Properties\PublishProfiles\__preloaded__.pubxml</WebPublishProfileFile>
+	</PropertyGroup>
+	<Target Name="MarkOpenHarmonyPublishProfileImported"
+			BeforeTargets="PrepareForPublish"
+			Condition="'$(PublishProfile)' != '' and Exists('Properties\PublishProfiles\$(PublishProfile).pubxml')">
+		<PropertyGroup>
+			<PublishProfileImported>true</PublishProfileImported>
+		</PropertyGroup>
+	</Target>
 	
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView" Version="9.0.2" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -19,7 +37,7 @@
 		<ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
 	</ItemGroup>
 
-	<Import Project="../../ThirdParty/PublishAotCross/src/PublishAotCross.targets" />
+	<Import Project="../../ThirdParty/PublishAotCross/package/OpenHarmony.NET.PublishAotCross.targets" />
 	<Import Project="../../ThirdParty/OpenHarmony.NET.Runtime/runtime.targets" />
 
 	<ItemGroup>

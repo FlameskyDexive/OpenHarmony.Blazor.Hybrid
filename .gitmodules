@@ -1,9 +1,12 @@
 [submodule "ThirdParty/OpenHarmony.NDK.Bindings"]
 	path = ThirdParty/OpenHarmony.NDK.Bindings
-	url = https://github.com/OpenHarmony-NET/OpenHarmony.NDK.Bindings
+	url = https://github.com/FlameskyDexive/OpenHarmony.NDK.Bindings
+	branch = openharmony/api26-bindings
 [submodule "ThirdParty/OpenHarmony.NET.Runtime"]
 	path = ThirdParty/OpenHarmony.NET.Runtime
-	url = https://github.com/OpenHarmony-NET/OpenHarmony.NET.Runtime
+	url = https://github.com/FlameskyDexive/OpenHarmony.NET.Runtime
+	branch = openharmony/dotnet10-api26
 [submodule "ThirdParty/PublishAotCross"]
 	path = ThirdParty/PublishAotCross
-	url = https://github.com/OpenHarmony-NET/PublishAotCross
+	url = https://github.com/FlameskyDexive/PublishAotCross
+	branch = openharmony/dotnet10-api26

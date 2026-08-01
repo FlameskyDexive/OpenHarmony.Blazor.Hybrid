@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using OpenHarmony.NDK.Bindings.Native;
+using ace_napi = OpenHarmony.NDK.Bindings.Native.node_api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,12 @@ public class Entry
 {
     public static BlazorWebview Create(napi_env env, napi_ref sendMessage, napi_ref navigateCore)
     {
+
+        string smoke = RuntimeSmoke.Run();
+        if (!RuntimeSmokeTests.HasExpectedRuntime(smoke))
+        {
+            throw new InvalidOperationException($"Runtime smoke test failed: {smoke}");
+        }
 
         var services = new ServiceCollection();
 

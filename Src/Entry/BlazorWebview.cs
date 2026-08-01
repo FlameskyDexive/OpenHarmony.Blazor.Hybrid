@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.Extensions.FileProviders;
 using OpenHarmony.NDK.Bindings.Native;
+using ace_napi = OpenHarmony.NDK.Bindings.Native.node_api;
 using System;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
