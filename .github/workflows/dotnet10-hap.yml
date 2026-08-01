@@ -34,7 +34,7 @@ jobs:
           $profile = Get-Content OHOS_Project/build-profile.json5 -Raw
           if ($profile -notmatch 'compatibleSdkVersion"\s*:\s*"5\.0\.3\(15\)"') { throw 'HAP minimum API is not 15.' }
           if ((git rev-parse HEAD:ThirdParty/OpenHarmony.NDK.Bindings) -ne '2b68d3c1a3b3e1f5f8eabe1cfe0eae6348a55ce3') { throw 'Bindings submodule is not pinned to the accepted commit.' }
-          if ((git rev-parse HEAD:ThirdParty/OpenHarmony.NET.Runtime) -ne 'e13ef07e87696c38bcf0f7dcb9d54ff45a0a9609') { throw 'Runtime package submodule is not pinned to the accepted commit.' }
+          if ((git rev-parse HEAD:ThirdParty/OpenHarmony.NET.Runtime) -ne 'ee65d551e72d5d45610df97d9aa88a994062371a') { throw 'Runtime package submodule is not pinned to the accepted commit.' }
           if ((git rev-parse HEAD:ThirdParty/PublishAotCross) -ne '94e69fb8e98d3b4c5ee126392081f5e8f44c34ad') { throw 'PublishAotCross submodule is not pinned to the accepted commit.' }
           git diff --check
 

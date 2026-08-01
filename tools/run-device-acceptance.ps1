@@ -55,7 +55,7 @@ Invoke-Hdc -Arguments @('shell', 'hilog', '-r') | Out-Null
 Invoke-Hdc -Arguments @('install', '-r', (Resolve-Path -LiteralPath $HapPath).Path) | Out-Null
 Invoke-Hdc -Arguments @('shell', 'aa', 'start', '-a', 'EntryAbility', '-b', 'com.example.blazorapp') | Out-Null
 Start-Sleep -Seconds 10
-$log = (Invoke-Hdc -Arguments @('shell', 'hilog', '-d')) -join [Environment]::NewLine
+$log = (Invoke-Hdc -Arguments @('shell', 'hilog', '-x')) -join [Environment]::NewLine
 
 $required = @(
     'Dotnet10Smoke',
@@ -63,8 +63,8 @@ $required = @(
     'runtime=10.',
     "api=$ApiLevel",
     "abi=$Abi",
-    'runtimeSource=a9c01b20cc8aa9ca03955c9f55626bfd517619c9',
-    'runtimePackage=e13ef07',
+    'runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6',
+    'runtimePackage=ee65d55',
     'bindings=2b68d3c',
     'publishAot=94e69fb',
     'startup=True',
@@ -78,7 +78,7 @@ $required = @(
     'callback=True'
 )
 foreach ($token in $required) {
-    if (-not $log.Contains($token, [StringComparison]::Ordinal)) { throw "Device smoke log is missing '$token'." }
+    if ($log.IndexOf($token, [StringComparison]::Ordinal) -lt 0) { throw "Device smoke log is missing '$token'." }
 }
 
 New-Item -ItemType Directory -Path $EvidenceRoot -Force | Out-Null
@@ -93,8 +93,8 @@ $evidence = [ordered]@{
     architecture = $deviceArch
     hapSha256 = (Get-FileHash -LiteralPath $HapPath -Algorithm SHA256).Hash.ToLowerInvariant()
     hilogSha256 = (Get-FileHash -LiteralPath $logPath -Algorithm SHA256).Hash.ToLowerInvariant()
-    runtimeSourceCommit = 'a9c01b20cc8aa9ca03955c9f55626bfd517619c9'
-    runtimePackageCommit = 'e13ef07'
+    runtimeSourceCommit = '76bde136efafd0e193234e38d169752b93e3bce6'
+    runtimePackageCommit = 'ee65d55'
     bindingsCommit = '2b68d3c'
     publishAotCrossCommit = '94e69fb'
 }

@@ -26,8 +26,8 @@ if ($Arguments -contains 'param') {
     '26'
     exit 0
 }
-if ($Arguments -contains '-d') {
-    'Dotnet10Smoke status=PASS runtime=10.0 api=26 abi=x86_64 runtimeSource=a9c01b20cc8aa9ca03955c9f55626bfd517619c9 runtimePackage=e13ef07 bindings=2b68d3c publishAot=94e69fb startup=True gc=True thread=True file=True network=True icu=True hilog=True ipc=True callback=True'
+if ($Arguments -contains '-x') {
+    'Dotnet10Smoke status=PASS runtime=10.0 api=26 abi=x86_64 runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6 runtimePackage=ee65d55 bindings=2b68d3c publishAot=94e69fb startup=True gc=True thread=True file=True network=True icu=True hilog=True ipc=True callback=True'
 }
 exit 0
 '@ | Set-Content -LiteralPath $fakeHdc -Encoding UTF8
@@ -39,7 +39,36 @@ exit 0
 
         & $script -Abi x86_64 -HapPath $hap -HdcPath $fakeHdc -Target '127.0.0.1:5557' -ApiLevel 26 -EvidenceRoot $evidence | Out-Null
 
-        $LASTEXITCODE | Should -Be 0
-        Test-Path (Join-Path $evidence 'api26-x86_64-evidence.json') | Should -BeTrue
+        if ($LASTEXITCODE -ne 0) { throw "Acceptance script exited with code $LASTEXITCODE." }
+        if (-not (Test-Path (Join-Path $evidence 'api26-x86_64-evidence.json'))) {
+            throw 'Acceptance evidence was not written.'
+        }
+    }
+
+    It 'uses the loaded libentry path to resolve the NativeAOT library' {
+        $source = Get-Content -Raw (Join-Path $PSScriptRoot '..\OHOS_Project\entry\src\main\cpp\napi_init.cpp')
+
+        foreach ($pattern in @(
+            'dladdr',
+            'dladdr\(\(void\*\)\&LoadEntryLibrary',
+            'dlopen\(path, RTLD_NOW\)')) {
+            if (-not [regex]::IsMatch($source, $pattern)) { throw "Native loader is missing '$pattern'." }
+        }
+        foreach ($pattern in @('RTLD_GLOBAL', 'assert\(handle', 'OH_LOG_ERROR\(LOG_APP, "BlazorHybrid"')) {
+            if ([regex]::IsMatch($source, $pattern)) { throw "Native loader still contains '$pattern'." }
+        }
+
+        $project = Get-Content -Raw (Join-Path $PSScriptRoot '..\Src\Entry\Entry.csproj')
+        foreach ($pattern in @(
+            '76bde136efafd0e193234e38d169752b93e3bce6',
+            'ee65d55')) {
+            if (-not [regex]::IsMatch($project, $pattern)) { throw "Entry.csproj is missing '$pattern'." }
+        }
+        if ([regex]::IsMatch($project, 'PatchOpenHarmonyNativeExports')) {
+            throw 'Entry.csproj still patches NativeAOT exports.'
+        }
+        if (Test-Path (Join-Path $PSScriptRoot '..\Src\Entry\Entry.exports')) {
+            throw 'The obsolete NativeAOT TLS exports file still exists.'
+        }
     }
 }

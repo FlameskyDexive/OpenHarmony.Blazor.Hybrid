@@ -20,8 +20,8 @@
 		<WebPublishProfileFile Condition="'$(PublishProfile)' != '' and Exists('Properties\PublishProfiles\$(PublishProfile).pubxml')">$(MSBuildProjectDirectory)\Properties\PublishProfiles\__preloaded__.pubxml</WebPublishProfileFile>
 		<_OpenHarmonyBuildAbi Condition="'$(OpenHarmonyAbi)' == ''">unknown</_OpenHarmonyBuildAbi>
 		<_OpenHarmonyBuildAbi Condition="'$(OpenHarmonyAbi)' != ''">$(OpenHarmonyAbi)</_OpenHarmonyBuildAbi>
-		<OpenHarmonyRuntimeSourceCommit>a9c01b20cc8aa9ca03955c9f55626bfd517619c9</OpenHarmonyRuntimeSourceCommit>
-		<OpenHarmonyRuntimePackageCommit>e13ef07</OpenHarmonyRuntimePackageCommit>
+		<OpenHarmonyRuntimeSourceCommit>76bde136efafd0e193234e38d169752b93e3bce6</OpenHarmonyRuntimeSourceCommit>
+		<OpenHarmonyRuntimePackageCommit>ee65d55</OpenHarmonyRuntimePackageCommit>
 		<OpenHarmonyBindingsCommit>2b68d3c</OpenHarmonyBindingsCommit>
 		<PublishAotCrossCommit>94e69fb</PublishAotCrossCommit>
 	</PropertyGroup>
@@ -58,7 +58,6 @@
 			<PublishProfileImported>true</PublishProfileImported>
 		</PropertyGroup>
 	</Target>
-	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView" Version="10.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
