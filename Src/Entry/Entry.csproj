@@ -8,6 +8,7 @@
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	  <OpenHarmonyTarget>true</OpenHarmonyTarget>
 	  <OpenHarmonyApiLevel Condition="'$(OpenHarmonyApiLevel)' == ''">15</OpenHarmonyApiLevel>
+	  <OpenHarmonyRuntimeBaselineApi Condition="'$(OpenHarmonyRuntimeBaselineApi)' == ''">13</OpenHarmonyRuntimeBaselineApi>
 	  <JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>
 	  <StaticWebAssetsEnabled>true</StaticWebAssetsEnabled>
   </PropertyGroup>
@@ -20,10 +21,10 @@
 		<WebPublishProfileFile Condition="'$(PublishProfile)' != '' and Exists('Properties\PublishProfiles\$(PublishProfile).pubxml')">$(MSBuildProjectDirectory)\Properties\PublishProfiles\__preloaded__.pubxml</WebPublishProfileFile>
 		<_OpenHarmonyBuildAbi Condition="'$(OpenHarmonyAbi)' == ''">unknown</_OpenHarmonyBuildAbi>
 		<_OpenHarmonyBuildAbi Condition="'$(OpenHarmonyAbi)' != ''">$(OpenHarmonyAbi)</_OpenHarmonyBuildAbi>
-		<OpenHarmonyRuntimeSourceCommit>76bde136efafd0e193234e38d169752b93e3bce6</OpenHarmonyRuntimeSourceCommit>
-		<OpenHarmonyRuntimePackageCommit>ee65d55</OpenHarmonyRuntimePackageCommit>
-		<OpenHarmonyBindingsCommit>2b68d3c</OpenHarmonyBindingsCommit>
-		<PublishAotCrossCommit>94e69fb</PublishAotCrossCommit>
+		<OpenHarmonyRuntimeSourceCommit>ee78787154e1c1a76df4b76b1797d7a09c63937c</OpenHarmonyRuntimeSourceCommit>
+		<OpenHarmonyRuntimePackageCommit>44c8423</OpenHarmonyRuntimePackageCommit>
+		<OpenHarmonyBindingsCommit>43413d4</OpenHarmonyBindingsCommit>
+		<PublishAotCrossCommit>4210967</PublishAotCrossCommit>
 		<OpenHarmonySampleCommit Condition="'$(OpenHarmonySampleCommit)' == ''">unknown</OpenHarmonySampleCommit>
 		<OpenHarmonyEvidenceRunId Condition="'$(OpenHarmonyEvidenceRunId)' == ''">unknown</OpenHarmonyEvidenceRunId>
 	</PropertyGroup>
@@ -31,6 +32,10 @@
 		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
 			<_Parameter1>OpenHarmonyApiLevel</_Parameter1>
 			<_Parameter2>$(OpenHarmonyApiLevel)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+			<_Parameter1>OpenHarmonyRuntimeBaselineApi</_Parameter1>
+			<_Parameter2>$(OpenHarmonyRuntimeBaselineApi)</_Parameter2>
 		</AssemblyAttribute>
 		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
 			<_Parameter1>OpenHarmonyAbi</_Parameter1>

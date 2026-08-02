@@ -154,7 +154,7 @@ public class BlazorWebview : WebViewManager
         }
 
         napi_value sendMessageFun = default;
-        ace_napi.napi_get_reference_value(Env, navigateCore, &sendMessageFun);
+        ace_napi.napi_get_reference_value(Env, sendMessage, &sendMessageFun);
         var code = ace_napi.napi_call_function(Env, default, sendMessageFun, 1, &msg, default);
         if (code != napi_status.napi_ok)
         {

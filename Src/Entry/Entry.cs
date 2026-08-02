@@ -145,7 +145,7 @@ public class Entry
 
             napi_ref sendMessage = default, navigateCore = default;
             ace_napi.napi_create_reference(env, args[0], 1, &sendMessage);
-            ace_napi.napi_create_reference(env, args[0], 1, &navigateCore);
+            ace_napi.napi_create_reference(env, args[1], 1, &navigateCore);
             webview = Create(env, sendMessage, navigateCore);
         } 
         catch (Exception e)

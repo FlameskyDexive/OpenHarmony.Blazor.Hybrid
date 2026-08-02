@@ -23,7 +23,7 @@ if ($Arguments -contains 'uname') {
     exit 0
 }
 if ($Arguments -contains 'param') {
-    '26'
+    if ($env:FAKE_DEVICE_API_LEVEL) { $env:FAKE_DEVICE_API_LEVEL } else { '26' }
     exit 0
 }
 if ($Arguments -contains 'bm' -and $Arguments -contains 'dump' -and $Arguments -contains '-a') {
@@ -74,10 +74,10 @@ if ($Arguments -contains '-x') {
         'msg:error: failed to read hilog'
     }
     'UnrelatedService user=private-device-data'
-    '08-01 14:08:45.579 17971 17971 I A00000/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=stale-run;runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6;runtimePackage=ee65d55;bindings=2b68d3c;publishAot=94e69fb;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
-    '08-01 14:08:45.580 17000 17000 I B12345/OtherService: A00000/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=pester-api26-x86_64;runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6;runtimePackage=ee65d55;bindings=2b68d3c;publishAot=94e69fb;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
-    '08-01 14:08:45.581 17972 17972 I A00000/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=pester-api26-x86_64;runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6;runtimePackage=ee65d55;bindings=2b68d3c;publishAot=94e69fb;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
-    '08-01 14:08:45.582 17971 17971 I A00000/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=pester-api26-x86_64;runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6;runtimePackage=ee65d55;bindings=2b68d3c;publishAot=94e69fb;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
+    '08-01 14:08:45.579 17971 17971 I A00000/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=stale-run;runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c;runtimePackage=44c8423;bindings=43413d4;publishAot=4210967;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
+    '08-01 14:08:45.580 17000 17000 I B12345/OtherService: A00000/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=pester-api26-x86_64;runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c;runtimePackage=44c8423;bindings=43413d4;publishAot=4210967;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
+    '08-01 14:08:45.581 17972 17972 I A00000/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=pester-api26-x86_64;runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c;runtimePackage=44c8423;bindings=43413d4;publishAot=4210967;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
+    '08-01 14:08:45.582 17971 17971 I A00000/com.example.blazorapp/Dotnet10Smoke: status=PASS;runtime=10.0.10;arch=X64;api=26;abi=x86_64;sample=0123456789abcdef0123456789abcdef01234567;run=pester-api26-x86_64;runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c;runtimePackage=44c8423;bindings=43413d4;publishAot=4210967;startup=True;gc=True;thread=True;file=True;network=True;icu=True;hilog=True;ipc=True;callback=True'
     'UnrelatedService token=private-system-data'
 }
 exit 0
@@ -219,6 +219,24 @@ throw "Unexpected signer command: $($Arguments -join ' ')"
         if ($hilog -notlike 'status=PASS;runtime=10.*' -or
             $hilog -match 'Dotnet10Smoke|UnrelatedService|private-|17971|A00000|08-01') {
             throw 'Acceptance evidence must contain only the application smoke log.'
+        }
+
+        $compatibilityEvidence = Join-Path $TestDrive 'higher-device-api-evidence'
+        $env:FAKE_DEVICE_API_LEVEL = '27'
+        try {
+            & $script -Abi x86_64 -HapPath $hap -HdcPath $fakeHdc -Target '127.0.0.1:5557' `
+                -ApiLevel 26 -DeviceApiLevel 27 -EvidenceRoot $compatibilityEvidence -JavaPath $fakeJava `
+                -HapSignToolPath $signTool -SampleCommit '0123456789abcdef0123456789abcdef01234567' `
+                -EvidenceRunId 'pester-api26-x86_64' -PrivateEvidenceRoot (Join-Path $TestDrive 'higher-device-api-private') | Out-Null
+        }
+        finally {
+            Remove-Item Env:FAKE_DEVICE_API_LEVEL -ErrorAction SilentlyContinue
+        }
+        $compatibilityResult = Get-Content -LiteralPath (Join-Path $compatibilityEvidence 'api26-x86_64-evidence.json') -Raw | ConvertFrom-Json
+        if ($compatibilityResult.deviceApi -ne 27 -or $compatibilityResult.buildApi -ne 26 -or
+            $compatibilityResult.runtimeBaselineApi -ne 13 -or
+            $compatibilityResult.apiLevel -ne 27 -or $compatibilityResult.buildApiLevel -ne 26) {
+            throw 'Compatibility evidence must distinguish the build API from the higher device API.'
         }
 
         foreach ($case in @(
@@ -765,6 +783,47 @@ exit 1
         }
     }
 
+    It 'roots the NativeAOT JSON converters required by WebView IPC' {
+        $directives = Get-Content -Raw (Join-Path $PSScriptRoot '..\Src\Entry\rd.xml')
+
+        foreach ($type in @(
+            'System.Text.Json.Serialization.Converters.EnumConverter`1[[Microsoft.JSInterop.JSCallResultType,Microsoft.JSInterop]]',
+            'System.Text.Json.Serialization.Converters.EnumConverter`1[[Microsoft.JSInterop.Infrastructure.JSCallType,Microsoft.JSInterop]]')) {
+            $token = '<Type Name="' + $type + '" Dynamic="Required All" />'
+            if ($directives.IndexOf($token, [StringComparison]::Ordinal) -lt 0) {
+                throw "NativeAOT directives do not root required WebView IPC converter '$type'."
+            }
+        }
+    }
+
+    It 'routes WebView messages and navigation through their distinct callbacks' {
+        $entrySource = Get-Content -Raw (Join-Path $PSScriptRoot '..\Src\Entry\Entry.cs')
+        $webviewSource = Get-Content -Raw (Join-Path $PSScriptRoot '..\Src\Entry\BlazorWebview.cs')
+
+        foreach ($token in @(
+            'napi_create_reference(env, args[0], 1, &sendMessage);',
+            'napi_create_reference(env, args[1], 1, &navigateCore);')) {
+            if ($entrySource.IndexOf($token, [StringComparison]::Ordinal) -lt 0) {
+                throw "The native bridge is missing callback binding '$token'."
+            }
+        }
+        if ($entrySource.IndexOf(
+            'napi_create_reference(env, args[0], 1, &navigateCore);',
+            [StringComparison]::Ordinal) -ge 0) {
+            throw 'The native bridge still binds navigation to the message callback argument.'
+        }
+        if (-not [regex]::IsMatch(
+            $webviewSource,
+            'napi_get_reference_value\(Env, sendMessage, &sendMessageFun\);')) {
+            throw 'Blazor WebView messages are not dispatched through the message callback.'
+        }
+        if (-not [regex]::IsMatch(
+            $webviewSource,
+            'napi_get_reference_value\(Env, navigateCore, &navigateCoreFun\);')) {
+            throw 'Blazor WebView navigation is not dispatched through the navigation callback.'
+        }
+    }
+
     It 'uses the loaded libentry path to resolve the NativeAOT library' {
         $source = Get-Content -Raw (Join-Path $PSScriptRoot '..\OHOS_Project\entry\src\main\cpp\napi_init.cpp')
 
@@ -780,8 +839,8 @@ exit 1
 
         $project = Get-Content -Raw (Join-Path $PSScriptRoot '..\Src\Entry\Entry.csproj')
         foreach ($pattern in @(
-            '76bde136efafd0e193234e38d169752b93e3bce6',
-            'ee65d55',
+            'ee78787154e1c1a76df4b76b1797d7a09c63937c',
+            '44c8423',
             'OpenHarmonySampleCommit',
             'OpenHarmonyEvidenceRunId')) {
             if (-not [regex]::IsMatch($project, $pattern)) { throw "Entry.csproj is missing '$pattern'." }

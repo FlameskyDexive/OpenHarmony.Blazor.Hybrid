@@ -13,6 +13,10 @@ param(
 
     [int] $ApiLevel = 26,
 
+    [Nullable[int]] $DeviceApiLevel,
+
+    [int] $ExpectedRuntimeBaselineApi = 13,
+
     [string] $EvidenceRoot = 'artifacts/device-evidence',
 
     [string] $JavaPath = 'java',
@@ -33,6 +37,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $bundleName = 'com.example.blazorapp'
+if ($null -eq $DeviceApiLevel) { $DeviceApiLevel = $ApiLevel }
 
 function Resolve-ToolPath {
     param([Parameter(Mandatory = $true)][string] $Path)
@@ -181,7 +186,7 @@ try {
     $deviceApiText = $deviceApiResult.Text.Trim()
     if ($deviceApiText -notmatch '\d+') { throw "Unable to read target API level: $deviceApiText" }
     $deviceApi = [int]$Matches[0]
-    if ($deviceApi -ne $ApiLevel) { throw "Expected HarmonyOS API $ApiLevel target, found API $deviceApi." }
+    if ($deviceApi -ne $DeviceApiLevel) { throw "Expected HarmonyOS API $DeviceApiLevel target, found API $deviceApi." }
 
     $bundleQueryResult = Invoke-Hdc -Arguments @('shell', 'bm', 'dump', '-a')
     Save-PrivateOutput -Name 'hdc-bundle-query.txt' -Value $bundleQueryResult.Text | Out-Null
@@ -247,14 +252,15 @@ try {
     Save-PrivateOutput -Name 'hdc-process.txt' -Value $processResult.Text | Out-Null
 
     $expectedManagedArchitecture = if ($Abi -eq 'arm64-v8a') { 'Arm64' } else { 'X64' }
-    $smokePattern = '^\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\.\d{3}\s+(?<pid>\d+)\s+\d+\s+[A-Z]\s+A00000/Dotnet10Smoke:\s*(?<payload>' +
+    $smokePattern = '^\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\.\d{3}\s+(?<pid>\d+)\s+\d+\s+[A-Z]\s+A00000/(?:' +
+        [regex]::Escape($bundleName) + '/)?Dotnet10Smoke:\s*(?<payload>' +
         'status=PASS;runtime=10\.\d+\.\d+;arch=' + [regex]::Escape($expectedManagedArchitecture) +
         ';api=' + $ApiLevel +
         ';abi=' + [regex]::Escape($Abi) +
         ';sample=' + [regex]::Escape($SampleCommit) +
         ';run=' + [regex]::Escape($EvidenceRunId) +
-        ';runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6' +
-        ';runtimePackage=ee65d55;bindings=2b68d3c;publishAot=94e69fb' +
+        ';runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c' +
+        ';runtimePackage=44c8423;bindings=43413d4;publishAot=4210967' +
         ';startup=True;gc=True;thread=True;file=True;network=True;icu=True' +
         ';hilog=True;ipc=True;callback=True)\s*$'
     $smokeRecords = @()
@@ -285,10 +291,10 @@ try {
         "abi=$Abi",
         "sample=$SampleCommit",
         "run=$EvidenceRunId",
-        'runtimeSource=76bde136efafd0e193234e38d169752b93e3bce6',
-        'runtimePackage=ee65d55',
-        'bindings=2b68d3c',
-        'publishAot=94e69fb',
+        'runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c',
+        'runtimePackage=44c8423',
+        'bindings=43413d4',
+        'publishAot=4210967',
         'startup=True',
         'gc=True',
         'thread=True',
@@ -335,6 +341,10 @@ try {
         javaExecutableSha256 = Get-Sha256 -Path $resolvedJavaPath
         privateEvidenceManifestSha256 = Get-Sha256 -Path $privateManifestPath
         privateEvidenceRetention = 'controlled-local'
+        buildApi = $ApiLevel
+        runtimeBaselineApi = $ExpectedRuntimeBaselineApi
+        deviceApi = $deviceApi
+        buildApiLevel = $ApiLevel
         apiLevel = $deviceApi
         abi = $Abi
         architecture = $deviceArch
@@ -386,10 +396,10 @@ try {
         signatureVerificationLogSha256 = $signature.VerificationLogSha256
         signatureVerifierSha256 = $signature.VerifierSha256
         hilogSha256 = Get-Sha256 -Path $logPath
-        runtimeSourceCommit = '76bde136efafd0e193234e38d169752b93e3bce6'
-        runtimePackageCommit = 'ee65d55'
-        bindingsCommit = '2b68d3c'
-        publishAotCrossCommit = '94e69fb'
+        runtimeSourceCommit = 'ee78787154e1c1a76df4b76b1797d7a09c63937c'
+        runtimePackageCommit = '44c8423'
+        bindingsCommit = '43413d4'
+        publishAotCrossCommit = '4210967'
     }
     $evidencePath = $publicEvidencePath
     Write-Utf8File -Path $evidencePath -Value (($evidence | ConvertTo-Json -Depth 6) + "`n")
