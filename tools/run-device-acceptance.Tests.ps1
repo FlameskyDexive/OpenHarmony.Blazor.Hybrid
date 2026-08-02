@@ -239,6 +239,18 @@ throw "Unexpected signer command: $($Arguments -join ' ')"
             throw 'Compatibility evidence must distinguish the build API from the higher device API.'
         }
 
+        $separateRunEvidence = Join-Path $TestDrive 'separate-smoke-run-evidence'
+        & $script -Abi x86_64 -HapPath $hap -HdcPath $fakeHdc -Target '127.0.0.1:5557' `
+            -ApiLevel 26 -EvidenceRoot $separateRunEvidence -JavaPath $fakeJava `
+            -HapSignToolPath $signTool -SampleCommit '0123456789abcdef0123456789abcdef01234567' `
+            -EvidenceRunId 'acceptance-run' -ExpectedSmokeRunId 'pester-api26-x86_64' `
+            -PrivateEvidenceRoot (Join-Path $TestDrive 'separate-smoke-run-private') | Out-Null
+        $separateRunResult = Get-Content -LiteralPath (Join-Path $separateRunEvidence 'api26-x86_64-evidence.json') -Raw | ConvertFrom-Json
+        if ($separateRunResult.evidenceRunId -ne 'acceptance-run' -or
+            $separateRunResult.expectedSmokeRunId -ne 'pester-api26-x86_64') {
+            throw 'Acceptance evidence must distinguish its run ID from the HAP-embedded smoke run ID.'
+        }
+
         foreach ($case in @(
             @{ Environment = 'FAKE_VERIFY_APP_ERROR'; Stage = 'signature verification failed'; Sentinel = 'RAW_PRIVATE_VERIFY_APP_OUTPUT' },
             @{ Environment = 'FAKE_VERIFY_PROFILE_ERROR'; Stage = 'signing profile verification failed'; Sentinel = 'RAW_PRIVATE_VERIFY_PROFILE_OUTPUT' },

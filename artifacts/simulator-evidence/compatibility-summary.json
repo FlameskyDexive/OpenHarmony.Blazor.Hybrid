@@ -1,0 +1,1835 @@
+{
+  "schemaVersion": 1,
+  "result": "PASS",
+  "evidenceRunId": "task8-x86_64-api13-api26",
+  "abi": "x86_64",
+  "supportedApis": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    26
+  ],
+  "api25": "absent",
+  "records": [
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 13,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "75a53767e0949b1a6e9416d9a14e9add9b42f8f959390e2a15e9521c722a58d9",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 14,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "108008bf300aa0e26005eb2d2341373075ba11dc5f50710b345e492f5bd08d12",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 14,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "9e79709e254a4122a925012d6de67c37c2fe30619741d1f582db7c4c501fb119",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 15,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "6f5ff6c378a6434363e48f7194582734fc705b236ba155b8271640edf3f056d9",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 15,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "07477521a4af888a6729bd090c80d991f0165ff5848672cae4797102a377c427",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 15,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "4d56f6db834b2dbee5d62192721673ca27d1656d738e7a9812bc1f0c2c3161eb",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 16,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "19eae0c9aa40f71a0fe425fe99937a5f327a07547d7d8dc4191112b8b0f40d39",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 16,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "05a48e4bd68cd32b22b87550d94ac435cf045a82dfe5c2335fc6f36de845c1a0",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 16,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "abf4a53c4f7c6f7327a8e8b289aa92d273c91268ed7b4dbaa85f9a1cfc07382f",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 16,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 17,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "dad3f4bf5d4104dfcf9500a8102c00ee8904e7148f63533d7c1a6413b2294d53",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 17,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "b81edd1dada5271f9b2eddafafb382eafb0a2867e24b780cd84e975756216ecf",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 17,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "f0b187533845ced5e2761c72ce7cfb9644eca284b0c7ad85a94337d6c19be948",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 17,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 17,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 18,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "34ae7f1708b75b6daa2b807cfdd35f4552a9d05d206e688094ecfbb5649424b1",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 18,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "da1e09d4f47360012cd085e99c290d556f3d92c5bae3513ffedaee3035d80715",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 18,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "88a57359e3dda612ee8030af50009f830d47c5ee6584e8df820b4e068241684f",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 18,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 18,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 18,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "e9e2801eeb66d1965698af52686ba433c4dadaf3896c25483675b1aa9ae6b12c",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 19,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "ce173ff79628bef497d7bf605da3873a167f96a00f73f46f25e5f3ed3d64a884",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 19,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "d51efddfe3c0a39aa886f637c27114bb9dccf9ba0906ce2aa407130051ead01c",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 19,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "087e3bf694457741d35f100884f6dac7983f2aa72bc30b05637592ffa8fe87d3",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 19,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 19,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 19,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "a20f5b295dc721aa3ed4a18c2e50337078e628bc0bc6bb25b9416bb5a86c5723",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 19,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "9429705dde83ec106905a79e9e9ca7d1161dfac10c2f22bcfd94b64a4172bf94",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "991df9e28c9bb632b4525829723a1d43f0143ae82f8eb8cb766af050df0d1a63",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "7500e452acb694c4eee1c3397650ca01573f489c7a5839732ef02d6438701cad",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "a62c24ee51e341ed8a2dc13773ac7efc948f457c2d83241a66d77eddcb10c877",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 20,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 20,
+      "abi": "x86_64",
+      "hapSha256": "570edecf6ddc7b71ab814c6ae1e626b4e011e2c664c5c417e7c59ca986355e12",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 20,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "07231794acdacbe3cb48cb37962c8b224c85029d7e2991dc272625b3afd05ebb",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "0d99fd7193a317cbd60e2c45f57d8bb8b9f9a0280777eea8294682e750fc4759",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "51b0ccfbe1effd260ed5eccbffb83d6edde95b1baf6436c6caa30bc149f11d2f",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "f455bd7e49d2dbbbdbf03cb5c3112fe5c2c9ecbc24b356f9850150ed1257c7af",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "4a0b2eeadac3d8e4ed8dc00968db82cf75e48eb0291f085958ab427a0768af80",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 20,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "hapSha256": "570edecf6ddc7b71ab814c6ae1e626b4e011e2c664c5c417e7c59ca986355e12",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 20,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "d268c5904a2720a23ae158428b50f998e51ab2c6d261d304a3284d68414dc6b6",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 21,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 21,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "dc4e7e1c67a84cdb062f9040a3d6592e76f73569987eb32602f1c44410582666",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "7fbfd5990f301ef4724bad53f3a61f6e696fcb51eb745abfc609bcbfab359dae",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "8f4d43a3947bd62f7aab90da94ecce26f4c5e01f6f522bd9204ff49d1c881893",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "77d6de97cdfb83afa9b9e9dad1c2ed9cd52bf9506d1f496c7e9e2869db96a0dc",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 20,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "hapSha256": "570edecf6ddc7b71ab814c6ae1e626b4e011e2c664c5c417e7c59ca986355e12",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 20,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "3a88169504b929ad6b6cceb0e79fcd4972ed38d2e6fe1bf95e0b228944700c8d",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 21,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 22,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 22,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "e2fe29544600a293962f2cf6ad3146c302aeea2dca8a92282d4d932714ce75d6",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "542a23a49ada7d31977f6881d892f9b2cd2f99dbd09ce932c39f9cf325281b84",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "3019c5b2822576433e9562123c32455da3805aa4ea6b1fa50650e61d1d04550a",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "b3e3a17bb422e3b523f2b8d795ad0b9209e7fbf98bc449aab4f269449bcf3d8e",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 20,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "hapSha256": "570edecf6ddc7b71ab814c6ae1e626b4e011e2c664c5c417e7c59ca986355e12",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 20,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "bc4678502d1e1cc060b2c94d3fdcc264eaa4f19af9e13e93534c29d17984c65b",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 21,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 22,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 23,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 23,
+      "abi": "x86_64",
+      "hapSha256": "e135fb7c7d4d5fcfecf96d1d3068f5c9386286dcff57dffd213efe2d1fa2773c",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 23,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "b0e67a54779496223c85a3bc6fbc5f88c7578fae1c2e05d8c0649473d972f183",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "c76d8b81af73764b747566c20f74a1a1986ec95e871b9d05589730505945d8a4",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "2a265911ab0375802128edde831216e922fb1456b482e01053e81d1ad07b350f",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "6457258a6af098da9d836bb1c61937a8c2536912173dbf3d75cd91834c16210b",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "15f0e0e5697f0b8aadb0e3856d6134117540b2ddcebc4ee06da741ebf4911df2",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 20,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "hapSha256": "570edecf6ddc7b71ab814c6ae1e626b4e011e2c664c5c417e7c59ca986355e12",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 20,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "5e4a307e91fe4f45f9902a7555fa76ae9eeaf50224d60472bebfbf05af201325",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 21,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 22,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 23,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "hapSha256": "e135fb7c7d4d5fcfecf96d1d3068f5c9386286dcff57dffd213efe2d1fa2773c",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 23,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "5b77d8eed8ecc83f5820147937eb909b9d9eb2f9b8d9de1c9a401427c8c11fb3",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 24,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 24,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "hapSha256": "fb2da26786e3eee77804f84182609ceb40a8450625a8e546f00519541cde3af4",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "6e3ac7e07192c1ff11eedb6bb2e6c8e1cb059d742d1c6cb28503c1e673c156f9",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "hapSha256": "100cabfcc72134afdf42871ced22eaae0414441d1d2621370d7b1534dd81b7a5",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "f51a6426a179ad182572b05e44f0dd8f0b9f70bc6a3ee42089ae2ade97b4d128",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "hapSha256": "7a7351ea7e2f201199c83b07fe58d8e537c5ff082ce5403f03f4ec6883cdc218",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "48ee3761b12c476e4a33e9d599022a4c732522ff4aa56bccb6c4f9097a7b8b1f",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "hapSha256": "074ae566974f097b87207c7ffc09e7ce9fa4e2dd80ccbe1253e6dcca38892d89",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "627a425d32a3a77147373d8ef3455afa6f071992f5a84302174e03c239283127",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 20,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "hapSha256": "570edecf6ddc7b71ab814c6ae1e626b4e011e2c664c5c417e7c59ca986355e12",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 20,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "015264a541997956b74bed2e8470e496c3adcced36a8e68671ca78157b54d3f1",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 21,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 22,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 23,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "hapSha256": "e135fb7c7d4d5fcfecf96d1d3068f5c9386286dcff57dffd213efe2d1fa2773c",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 23,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "ca5bbb784f40a742373a72b43b4086e0dddcb084b0217466e90a30173994d04a",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 24,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "reason": "No independent installable Native SDK/HAP exists for this build API; emulator compatibility was not fabricated."
+    },
+    {
+      "status": "PASS",
+      "buildApi": 26,
+      "runtimeBaselineApi": 13,
+      "deviceApi": 26,
+      "abi": "x86_64",
+      "hapSha256": "eef10123abc848d5872ff8de9322f793227a67401e931cbcb9a6b4d7775eadea",
+      "sampleCommit": "408e2a35312bc1a902158928cd6cc9e5a0f8cf63",
+      "runtimeCommit": "44c84236cd42a9f4c276818a9dfbca20fddbf181",
+      "bindingsCommit": "43413d4698dbc2172ad241b14a8c1bfc9e72f35c",
+      "publishAotCrossCommit": "421096729d546a8c8564ce2f79054ef328789281",
+      "runtimeManifestEntry": {
+        "buildApi": 26,
+        "runtimeApi": 13,
+        "abi": "x86_64",
+        "root": "x86_64/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "9c68239cfa37c17f88b60a2b5ece9c7dfc0e342d97a732fc63b5bc0b7c88fd9c",
+        "sourceDirty": false
+      },
+      "acceptanceEvidenceSha256": "c3b85a86eb22c2f0cc20d760c1f8e8cc2b0aee724a03fda16954b7c91ba01e91",
+      "ui": {
+        "status": "PASS",
+        "homeText": "Hello, world!",
+        "counterInitial": 0,
+        "counterAfterClick": 1
+      }
+    }
+  ],
+  "passCount": 54,
+  "skippedCount": 37,
+  "totalCount": 91
+}

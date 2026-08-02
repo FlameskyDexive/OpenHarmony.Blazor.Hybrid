@@ -32,12 +32,15 @@ param(
     [ValidatePattern('^[A-Za-z0-9._-]{1,128}$')]
     [string] $EvidenceRunId,
 
+    [string] $ExpectedSmokeRunId,
+
     [string] $PrivateEvidenceRoot
 )
 
 $ErrorActionPreference = 'Stop'
 $bundleName = 'com.example.blazorapp'
 if ($null -eq $DeviceApiLevel) { $DeviceApiLevel = $ApiLevel }
+if ([string]::IsNullOrWhiteSpace($ExpectedSmokeRunId)) { $ExpectedSmokeRunId = $EvidenceRunId }
 
 function Resolve-ToolPath {
     param([Parameter(Mandatory = $true)][string] $Path)
@@ -258,7 +261,7 @@ try {
         ';api=' + $ApiLevel +
         ';abi=' + [regex]::Escape($Abi) +
         ';sample=' + [regex]::Escape($SampleCommit) +
-        ';run=' + [regex]::Escape($EvidenceRunId) +
+        ';run=' + [regex]::Escape($ExpectedSmokeRunId) +
         ';runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c' +
         ';runtimePackage=44c8423;bindings=43413d4;publishAot=4210967' +
         ';startup=True;gc=True;thread=True;file=True;network=True;icu=True' +
@@ -290,7 +293,7 @@ try {
         "api=$ApiLevel",
         "abi=$Abi",
         "sample=$SampleCommit",
-        "run=$EvidenceRunId",
+        "run=$ExpectedSmokeRunId",
         'runtimeSource=ee78787154e1c1a76df4b76b1797d7a09c63937c',
         'runtimePackage=44c8423',
         'bindings=43413d4',
@@ -341,6 +344,7 @@ try {
         javaExecutableSha256 = Get-Sha256 -Path $resolvedJavaPath
         privateEvidenceManifestSha256 = Get-Sha256 -Path $privateManifestPath
         privateEvidenceRetention = 'controlled-local'
+        expectedSmokeRunId = $ExpectedSmokeRunId
         buildApi = $ApiLevel
         runtimeBaselineApi = $ExpectedRuntimeBaselineApi
         deviceApi = $deviceApi
