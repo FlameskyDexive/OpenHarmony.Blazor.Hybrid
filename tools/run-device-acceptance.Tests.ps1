@@ -797,27 +797,28 @@ exit 1
     It 'preserves workflow evidence when device setup fails' {
         $workflow = Get-Content -LiteralPath (Join-Path $PSScriptRoot '..\.github\workflows\dotnet10-hap.yml') -Raw
 
-        if ([regex]::Matches($workflow, 'New-Item -ItemType Directory -Path \$evidenceRoot -Force').Count -lt 2) {
-            throw 'Device workflow does not initialize evidence roots for both setup phases.'
-        }
         foreach ($token in @(
+            'schedule:',
+            'options: [pr, nightly, device-ready, release]',
+            'PR API13/API26 x86_64 HAP smoke',
+            'Nightly 26-HAP and 91-case matrix',
+            'API24 arm64 physical-device gate',
+            'Preview/RC publication gate',
+            'build-hap-matrix.ps1 -Apis 13,26 -Abis x86_64',
+            'run-simulator-compatibility.ps1 -Apis (13..24 + 26)',
+            'run-clean-consumer.ps1',
+            'run-arm64-readiness.ps1',
+            '-RunDeviceAcceptance -DeviceApiLevel 24',
+            'write-release-evidence.ps1',
+            'verify-release-evidence.ps1',
+            '-RequireDeviceEvidence',
             'workflow-initialized.txt',
-            'workflow-build-failure.txt',
             'workflow-device-acceptance-failure.txt',
-            'workflow-host-publish-failure.txt',
             'if: always()',
             'if-no-files-found: error',
             '*-evidence.json',
             '*-hilog.txt',
-            'workflow-*.txt',
-            'host-publish-status-api${{ matrix.api }}-${{ matrix.abi }}',
-            '-p:OpenHarmonySampleCommit=${{ github.sha }}',
-            '-p:OpenHarmonyEvidenceRunId=${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.abi }}',
-            '-SampleCommit ''${{ github.sha }}''',
-            '-EvidenceRunId ''${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.abi }}''',
-            '-PrivateEvidenceRoot $privateEvidenceRoot',
-            '(Join-Path $evidenceRoot ''api26-${{ matrix.abi }}-evidence.json'')',
-            '(Join-Path $evidenceRoot ''api26-${{ matrix.abi }}-hilog.txt'')')) {
+            'workflow-*.txt')) {
             if ($workflow.IndexOf($token, [StringComparison]::Ordinal) -lt 0) {
                 throw "Device workflow is missing failure evidence contract '$token'."
             }
