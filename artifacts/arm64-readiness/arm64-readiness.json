@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "status": "READY_FOR_DEVICE",
+  "completedAtUtc": "2026-08-03T15:49:55.0924368Z",
+  "evidenceRunId": "arm64-readiness-20260803",
+  "abi": "arm64-v8a",
+  "runtimeBaselineApi": 13,
+  "logicalApiCount": 13,
+  "verifiedHapCount": 7,
+  "skippedApiCount": 6,
+  "runtimeManifestSha256": "5ad9206e946719cdd1cd76bc7e98401699336eb5d589768f098f7c28f4b22c05",
+  "matrixCatalogSha256": "e7e794f0184ffc3ce7eb47edcd55ceff24849aa356640c53b0a78c86136930bd",
+  "signaturePolicySha256": "234e1807b2af2f9056c7086863288acaa1a33a5824e7bf4a5b732328682669e1",
+  "readElfSha256": "c3ba8643c0b6617cc37948a2f324c0e249c6f35a24c759db5d34dd15f696f858",
+  "cases": [
+    {
+      "status": "READY_FOR_DEVICE",
+      "buildApi": 13,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "hapSha256": "176ea3d86aaa152d74445032700ddae518981c25fed80fe8afb77581ddb01a75",
+      "entrySoSha256": "0186f5f0467b0365ff26084f4d7f32734e9213e19e218fcb748f711ea0306533",
+      "signatureVerified": true,
+      "signature": {
+        "policy": "hap-sign-tool verify-app and verify-profile",
+        "verificationLogSha256": "d57058c553322e1374364a2226b7547d3c90df7679768b102a2d88bd72433593",
+        "certificateChainSha256": "b1db930aefd471edd9a704ae1b39876b611dea27fa526e5d996ff4e06613ec6d",
+        "signerCertificateSha256": "2c0a46fa467602fca9bdab4035f299620378860372f9a490c02d134e6818e9bc",
+        "signingProfileSha256": "4ffd05740871ca39f6d5603591efabcdf126175b3d69c3f3af7628f2a06e42f2"
+      },
+      "elf": {
+        "machine": "AArch64",
+        "needed": [
+          "libc.so",
+          "libc++_shared.so"
+        ],
+        "forbiddenNumaImports": []
+      },
+      "staticThunkLayout": {
+        "status": "VERIFIED",
+        "fileOffset": 5414912,
+        "pageSize": 4096,
+        "codePages": 8,
+        "thunksPerPage": 255,
+        "codeSize": 32768,
+        "dataSize": 32768
+      },
+      "runtimeManifestEntry": {
+        "buildApi": 13,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "READY_FOR_DEVICE",
+      "buildApi": 14,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "hapSha256": "3915406beec15bbe59e853ffb3a9fd938e939f83cbff40781bdf5034c4d4e358",
+      "entrySoSha256": "4a0463bee7adbd469b9eb19c6194c4f7bbafb850de12b481180a56f169cf906a",
+      "signatureVerified": true,
+      "signature": {
+        "policy": "hap-sign-tool verify-app and verify-profile",
+        "verificationLogSha256": "406a503ea9b26bff893e6e95c7899b61cb5adad89a96e53269eec9a7ca002710",
+        "certificateChainSha256": "b1db930aefd471edd9a704ae1b39876b611dea27fa526e5d996ff4e06613ec6d",
+        "signerCertificateSha256": "2c0a46fa467602fca9bdab4035f299620378860372f9a490c02d134e6818e9bc",
+        "signingProfileSha256": "4ffd05740871ca39f6d5603591efabcdf126175b3d69c3f3af7628f2a06e42f2"
+      },
+      "elf": {
+        "machine": "AArch64",
+        "needed": [
+          "libc.so",
+          "libc++_shared.so"
+        ],
+        "forbiddenNumaImports": []
+      },
+      "staticThunkLayout": {
+        "status": "VERIFIED",
+        "fileOffset": 5414912,
+        "pageSize": 4096,
+        "codePages": 8,
+        "thunksPerPage": 255,
+        "codeSize": 32768,
+        "dataSize": 32768
+      },
+      "runtimeManifestEntry": {
+        "buildApi": 14,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "READY_FOR_DEVICE",
+      "buildApi": 15,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "hapSha256": "75ea8b31c4c04d1acbb3bd74c4e6cf7afac598f0c7377fc80103e04f7110feaf",
+      "entrySoSha256": "af912f845efacb7df812cde0e02b546b7c9f1b5f65aa46db83c7794416be0c1c",
+      "signatureVerified": true,
+      "signature": {
+        "policy": "hap-sign-tool verify-app and verify-profile",
+        "verificationLogSha256": "501d9c3f636647f9374a7315c95172000a5b99e5298545f47dfbffed94d1d1f3",
+        "certificateChainSha256": "b1db930aefd471edd9a704ae1b39876b611dea27fa526e5d996ff4e06613ec6d",
+        "signerCertificateSha256": "2c0a46fa467602fca9bdab4035f299620378860372f9a490c02d134e6818e9bc",
+        "signingProfileSha256": "4ffd05740871ca39f6d5603591efabcdf126175b3d69c3f3af7628f2a06e42f2"
+      },
+      "elf": {
+        "machine": "AArch64",
+        "needed": [
+          "libc.so",
+          "libc++_shared.so"
+        ],
+        "forbiddenNumaImports": []
+      },
+      "staticThunkLayout": {
+        "status": "VERIFIED",
+        "fileOffset": 5414912,
+        "pageSize": 4096,
+        "codePages": 8,
+        "thunksPerPage": 255,
+        "codeSize": 32768,
+        "dataSize": 32768
+      },
+      "runtimeManifestEntry": {
+        "buildApi": 15,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 16,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "reason": "No independent installable Native SDK package exists; emulator compatibility remains a run-only target.",
+      "runtimeManifestEntry": {
+        "buildApi": 16,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 17,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "reason": "No independent installable Native SDK package exists; emulator compatibility remains a run-only target.",
+      "runtimeManifestEntry": {
+        "buildApi": 17,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "READY_FOR_DEVICE",
+      "buildApi": 18,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "hapSha256": "3787cdbc02c7cf59cc6725c9269ed5fdef88cfc6abd181309c5b0f3cc028469a",
+      "entrySoSha256": "972c3eda277af15272e0417013378694bac33c8944981130bb936d97567be371",
+      "signatureVerified": true,
+      "signature": {
+        "policy": "hap-sign-tool verify-app and verify-profile",
+        "verificationLogSha256": "cd613370a66ceb9cd8918051ccd92c20e036cf6318ec070cb067540d7aeb75cc",
+        "certificateChainSha256": "b1db930aefd471edd9a704ae1b39876b611dea27fa526e5d996ff4e06613ec6d",
+        "signerCertificateSha256": "2c0a46fa467602fca9bdab4035f299620378860372f9a490c02d134e6818e9bc",
+        "signingProfileSha256": "4ffd05740871ca39f6d5603591efabcdf126175b3d69c3f3af7628f2a06e42f2"
+      },
+      "elf": {
+        "machine": "AArch64",
+        "needed": [
+          "libc.so",
+          "libc++_shared.so"
+        ],
+        "forbiddenNumaImports": []
+      },
+      "staticThunkLayout": {
+        "status": "VERIFIED",
+        "fileOffset": 5414912,
+        "pageSize": 4096,
+        "codePages": 8,
+        "thunksPerPage": 255,
+        "codeSize": 32768,
+        "dataSize": 32768
+      },
+      "runtimeManifestEntry": {
+        "buildApi": 18,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 19,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "reason": "No independent installable Native SDK package exists; emulator compatibility remains a run-only target.",
+      "runtimeManifestEntry": {
+        "buildApi": 19,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "READY_FOR_DEVICE",
+      "buildApi": 20,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "hapSha256": "b82bcf0f9fbcaac60188ad9b8844bbdd43a394c82944536e31e566902fc23b43",
+      "entrySoSha256": "72ce604049bad78e279c9de33de460585afc715df84e4caf63619122774b5646",
+      "signatureVerified": true,
+      "signature": {
+        "policy": "hap-sign-tool verify-app and verify-profile",
+        "verificationLogSha256": "3527fb482946cf4b343301a1247635f93db41c8b22f501a28b5dab2564bca9df",
+        "certificateChainSha256": "b1db930aefd471edd9a704ae1b39876b611dea27fa526e5d996ff4e06613ec6d",
+        "signerCertificateSha256": "2c0a46fa467602fca9bdab4035f299620378860372f9a490c02d134e6818e9bc",
+        "signingProfileSha256": "4ffd05740871ca39f6d5603591efabcdf126175b3d69c3f3af7628f2a06e42f2"
+      },
+      "elf": {
+        "machine": "AArch64",
+        "needed": [
+          "libc.so",
+          "libc++_shared.so"
+        ],
+        "forbiddenNumaImports": []
+      },
+      "staticThunkLayout": {
+        "status": "VERIFIED",
+        "fileOffset": 5414912,
+        "pageSize": 4096,
+        "codePages": 8,
+        "thunksPerPage": 255,
+        "codeSize": 32768,
+        "dataSize": 32768
+      },
+      "runtimeManifestEntry": {
+        "buildApi": 20,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 21,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "reason": "No independent installable Native SDK package exists; emulator compatibility remains a run-only target.",
+      "runtimeManifestEntry": {
+        "buildApi": 21,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 22,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "reason": "No independent installable Native SDK package exists; emulator compatibility remains a run-only target.",
+      "runtimeManifestEntry": {
+        "buildApi": 22,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "READY_FOR_DEVICE",
+      "buildApi": 23,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "hapSha256": "ba431b214161f54d1e0ffef3eb312dbd150a28386feb9d10a4121e62faa8d677",
+      "entrySoSha256": "2e6e4764a34d346f1bf275f969e06ce67a25d93d67a8b545e47614c423d3d918",
+      "signatureVerified": true,
+      "signature": {
+        "policy": "hap-sign-tool verify-app and verify-profile",
+        "verificationLogSha256": "0916a1cb736e9d55e2a534ae78c58afb6aefd35087c85cf3aa32f6cdc033f886",
+        "certificateChainSha256": "b1db930aefd471edd9a704ae1b39876b611dea27fa526e5d996ff4e06613ec6d",
+        "signerCertificateSha256": "2c0a46fa467602fca9bdab4035f299620378860372f9a490c02d134e6818e9bc",
+        "signingProfileSha256": "4ffd05740871ca39f6d5603591efabcdf126175b3d69c3f3af7628f2a06e42f2"
+      },
+      "elf": {
+        "machine": "AArch64",
+        "needed": [
+          "libc.so",
+          "libc++_shared.so"
+        ],
+        "forbiddenNumaImports": []
+      },
+      "staticThunkLayout": {
+        "status": "VERIFIED",
+        "fileOffset": 5414912,
+        "pageSize": 4096,
+        "codePages": 8,
+        "thunksPerPage": 255,
+        "codeSize": 32768,
+        "dataSize": 32768
+      },
+      "runtimeManifestEntry": {
+        "buildApi": 23,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "SKIPPED",
+      "buildApi": 24,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "reason": "No independent installable Native SDK package exists; emulator compatibility remains a run-only target.",
+      "runtimeManifestEntry": {
+        "buildApi": 24,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    },
+    {
+      "status": "READY_FOR_DEVICE",
+      "buildApi": 26,
+      "runtimeBaselineApi": 13,
+      "abi": "arm64-v8a",
+      "hapSha256": "9d3bd7d3a2caa710c340901dad8b5dd369f2a2f73e5c3bcc82edd8c170800085",
+      "entrySoSha256": "b992a8315bc8de977a9dfbddb934bb989d6f2d87921dbbde5e400df4e05bbd0f",
+      "signatureVerified": true,
+      "signature": {
+        "policy": "hap-sign-tool verify-app and verify-profile",
+        "verificationLogSha256": "790881b179d5ade64737785eaaeca94be5aeb24bd9cd1591d34fa2f922a64e64",
+        "certificateChainSha256": "b1db930aefd471edd9a704ae1b39876b611dea27fa526e5d996ff4e06613ec6d",
+        "signerCertificateSha256": "2c0a46fa467602fca9bdab4035f299620378860372f9a490c02d134e6818e9bc",
+        "signingProfileSha256": "4ffd05740871ca39f6d5603591efabcdf126175b3d69c3f3af7628f2a06e42f2"
+      },
+      "elf": {
+        "machine": "AArch64",
+        "needed": [
+          "libc.so",
+          "libc++_shared.so"
+        ],
+        "forbiddenNumaImports": []
+      },
+      "staticThunkLayout": {
+        "status": "VERIFIED",
+        "fileOffset": 5414912,
+        "pageSize": 4096,
+        "codePages": 8,
+        "thunksPerPage": 255,
+        "codeSize": 32768,
+        "dataSize": 32768
+      },
+      "runtimeManifestEntry": {
+        "buildApi": 26,
+        "runtimeApi": 13,
+        "abi": "arm64-v8a",
+        "root": "arm64-v8a/runtime-pack",
+        "compatibilityKind": "alias",
+        "provenanceSha256": "89ab405619be598dab4dab96ee2a5401d798c79ffa737da871527e7ec5209f63",
+        "sourceDirty": false
+      }
+    }
+  ],
+  "device": {
+    "status": "NOT_REQUESTED",
+    "deviceApi": 24,
+    "abi": "arm64-v8a",
+    "cases": []
+  }
+}

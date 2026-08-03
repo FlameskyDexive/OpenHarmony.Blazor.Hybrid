@@ -8,8 +8,8 @@ param(
 )
 
 if ($Arguments -contains 'list') {
-    '127.0.0.1:5555'
-    '127.0.0.1:5557'
+    '127.0.0.1:5555 TCP Connected'
+    '127.0.0.1:5557 TCP Connected'
     exit 0
 }
 
@@ -55,6 +55,43 @@ if ($Arguments -contains 'install') {
 if ($Arguments -contains 'start') {
     Set-Content -LiteralPath (Join-Path $PSScriptRoot 'launch-called.txt') -Value called -Encoding ASCII
     'start ability successfully.'
+    exit 0
+}
+if ($Arguments -contains 'dumpLayout') {
+    'UI layout dumped.'
+    exit 0
+}
+if ($Arguments -contains 'recv') {
+    $recvIndex = [Array]::IndexOf($Arguments, 'recv')
+    $localPath = $Arguments[$recvIndex + 2]
+    $stagePath = Join-Path $PSScriptRoot 'ui-stage.txt'
+    $stage = if (Test-Path -LiteralPath $stagePath) { [int](Get-Content -LiteralPath $stagePath -Raw) } else { 0 }
+    $children = if ($stage -eq 0) {
+        @(
+            [ordered]@{ attributes = [ordered]@{ text = 'Hello, world!'; clickable = 'false'; bounds = '[0,0][100,100]' }; children = @() },
+            [ordered]@{ attributes = [ordered]@{ text = 'Counter'; clickable = 'true'; bounds = '[0,100][100,200]' }; children = @() })
+    }
+    elseif ($stage -eq 1) {
+        @(
+            [ordered]@{ attributes = [ordered]@{ text = 'Counter'; clickable = 'false'; bounds = '[0,0][100,100]' }; children = @() },
+            [ordered]@{ attributes = [ordered]@{ text = 'Current count: 0'; clickable = 'false'; bounds = '[0,100][100,200]' }; children = @() },
+            [ordered]@{ attributes = [ordered]@{ text = 'Click me'; clickable = 'true'; bounds = '[0,200][100,300]' }; children = @() })
+    }
+    else {
+        @(
+            [ordered]@{ attributes = [ordered]@{ text = 'Counter'; clickable = 'false'; bounds = '[0,0][100,100]' }; children = @() },
+            [ordered]@{ attributes = [ordered]@{ text = 'Current count: 1'; clickable = 'false'; bounds = '[0,100][100,200]' }; children = @() })
+    }
+    [ordered]@{ attributes = [ordered]@{ text = ''; clickable = 'false'; bounds = '[0,0][100,300]' }; children = $children } |
+        ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $localPath -Encoding UTF8
+    'FileTransfer finish'
+    exit 0
+}
+if ($Arguments -contains 'uiInput' -and $Arguments -contains 'click') {
+    $stagePath = Join-Path $PSScriptRoot 'ui-stage.txt'
+    $stage = if (Test-Path -LiteralPath $stagePath) { [int](Get-Content -LiteralPath $stagePath -Raw) } else { 0 }
+    Set-Content -LiteralPath $stagePath -Value ($stage + 1) -Encoding ASCII
+    'UI input injected.'
     exit 0
 }
 if ($Arguments -contains 'pidof') {
@@ -157,7 +194,7 @@ throw "Unexpected signer command: $($Arguments -join ' ')"
         Set-Content -LiteralPath (Join-Path $evidence 'api26-x86_64-hilog.txt') -Value 'stale smoke' -Encoding ASCII
         $script = Join-Path $PSScriptRoot 'run-device-acceptance.ps1'
 
-        & $script -Abi x86_64 -HapPath $hap -HdcPath $fakeHdc -Target '127.0.0.1:5557' -ApiLevel 26 -EvidenceRoot $evidence -JavaPath $fakeJava -HapSignToolPath $signTool -SampleCommit '0123456789abcdef0123456789abcdef01234567' -EvidenceRunId 'pester-api26-x86_64' | Out-Null
+        & $script -Abi x86_64 -HapPath $hap -HdcPath $fakeHdc -Target '127.0.0.1:5557' -ApiLevel 26 -EvidenceRoot $evidence -JavaPath $fakeJava -HapSignToolPath $signTool -SampleCommit '0123456789abcdef0123456789abcdef01234567' -EvidenceRunId 'pester-api26-x86_64' -RequireUiInteraction | Out-Null
 
         if ($LASTEXITCODE -ne 0) { throw "Acceptance script exited with code $LASTEXITCODE." }
         $evidencePath = Join-Path $evidence 'api26-x86_64-evidence.json'
@@ -188,7 +225,9 @@ throw "Unexpected signer command: $($Arguments -join ' ')"
             'signatureAttestation',
             'uninstallAttestation',
             'installAttestation',
-            'launchAttestation')) {
+            'launchAttestation',
+            'crashAttestation',
+            'uiAttestation')) {
             if ($result.$attestation.status -cne 'PASS') {
                 throw "Acceptance evidence is missing a PASS $attestation."
             }

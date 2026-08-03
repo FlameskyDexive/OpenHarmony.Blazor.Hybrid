@@ -34,6 +34,8 @@ param(
 
     [string] $ExpectedSmokeRunId,
 
+    [switch] $RequireUiInteraction,
+
     [string] $PrivateEvidenceRoot
 )
 
@@ -136,6 +138,107 @@ function Save-PrivateOutput {
     return [pscustomobject]@{ Path = $path; Sha256 = Get-Sha256 -Path $path }
 }
 
+function Get-UiLayout {
+    param([Parameter(Mandatory = $true)][string] $Label)
+
+    $remotePath = "/data/local/tmp/codex-layout-$([Guid]::NewGuid().ToString('N')).json"
+    Invoke-Hdc -Arguments @('shell', 'uitest', 'dumpLayout', '-p', $remotePath) | Out-Null
+    $localPath = Join-Path $privateRoot "$Label-layout.json"
+    Invoke-Hdc -Arguments @('file', 'recv', $remotePath, $localPath) | Out-Null
+    if (-not (Test-Path -LiteralPath $localPath -PathType Leaf)) {
+        throw 'HDC did not retrieve the requested UI layout.'
+    }
+    try {
+        return Get-Content -LiteralPath $localPath -Raw | ConvertFrom-Json
+    }
+    catch {
+        throw "Retrieved UI layout is not valid JSON: $($_.Exception.Message)"
+    }
+}
+
+function Get-UiLayoutNodes {
+    param([Parameter(Mandatory = $true)] $Node)
+
+    if ($Node.attributes) { $Node }
+    foreach ($child in @($Node.children)) { Get-UiLayoutNodes -Node $child }
+}
+
+function Get-UiNodeCenter {
+    param([Parameter(Mandatory = $true)][string] $Bounds)
+
+    $match = [regex]::Match($Bounds, '^\[(\d+),(\d+)\]\[(\d+),(\d+)\]$')
+    if (-not $match.Success) { throw "Invalid UI bounds '$Bounds'." }
+    return @(
+        [int](([int]$match.Groups[1].Value + [int]$match.Groups[3].Value) / 2),
+        [int](([int]$match.Groups[2].Value + [int]$match.Groups[4].Value) / 2))
+}
+
+function Invoke-UiInteractionAcceptance {
+    $homeNodes = @()
+    $deadline = [DateTime]::UtcNow.AddSeconds(20)
+    do {
+        $homeNodes = @(Get-UiLayoutNodes -Node (Get-UiLayout -Label 'home'))
+        if (@($homeNodes | Where-Object { $_.attributes.text -eq 'Hello, world!' }).Count -gt 0) { break }
+        Start-Sleep -Milliseconds 500
+    } while ([DateTime]::UtcNow -lt $deadline)
+    if (@($homeNodes | Where-Object { $_.attributes.text -eq 'Hello, world!' }).Count -eq 0) {
+        throw "Home UI did not contain 'Hello, world!'."
+    }
+
+    $counterLink = @($homeNodes | Where-Object {
+        $_.attributes.text -eq 'Counter' -and $_.attributes.clickable -eq 'true'
+    } | Select-Object -First 1)
+    if ($counterLink.Count -eq 0) {
+        $menu = @($homeNodes | Where-Object {
+            $_.attributes.text -eq 'Navigation menu' -and $_.attributes.clickable -eq 'true'
+        } | Select-Object -First 1)
+        if ($menu.Count -ne 1) { throw 'Navigation menu was not found.' }
+        $center = Get-UiNodeCenter -Bounds $menu[0].attributes.bounds
+        Invoke-Hdc -Arguments @('shell', 'uitest', 'uiInput', 'click', $center[0], $center[1]) | Out-Null
+        Start-Sleep -Milliseconds 500
+        $homeNodes = @(Get-UiLayoutNodes -Node (Get-UiLayout -Label 'menu'))
+        $counterLink = @($homeNodes | Where-Object {
+            $_.attributes.text -eq 'Counter' -and $_.attributes.clickable -eq 'true'
+        } | Select-Object -First 1)
+    }
+    if ($counterLink.Count -ne 1) { throw 'Counter navigation link was not found.' }
+    $center = Get-UiNodeCenter -Bounds $counterLink[0].attributes.bounds
+    Invoke-Hdc -Arguments @('shell', 'uitest', 'uiInput', 'click', $center[0], $center[1]) | Out-Null
+
+    $counterNodes = @()
+    $deadline = [DateTime]::UtcNow.AddSeconds(10)
+    do {
+        $counterNodes = @(Get-UiLayoutNodes -Node (Get-UiLayout -Label 'counter0'))
+        if (@($counterNodes | Where-Object { $_.attributes.text -eq 'Current count: 0' }).Count -gt 0) { break }
+        Start-Sleep -Milliseconds 500
+    } while ([DateTime]::UtcNow -lt $deadline)
+    if (@($counterNodes | Where-Object { $_.attributes.text -eq 'Current count: 0' }).Count -eq 0) {
+        throw 'Counter page did not show count 0.'
+    }
+    $button = @($counterNodes | Where-Object {
+        $_.attributes.text -eq 'Click me' -and $_.attributes.clickable -eq 'true'
+    } | Select-Object -First 1)
+    if ($button.Count -ne 1) { throw 'Counter button was not found.' }
+    $center = Get-UiNodeCenter -Bounds $button[0].attributes.bounds
+    Invoke-Hdc -Arguments @('shell', 'uitest', 'uiInput', 'click', $center[0], $center[1]) | Out-Null
+
+    $deadline = [DateTime]::UtcNow.AddSeconds(10)
+    do {
+        $counterNodes = @(Get-UiLayoutNodes -Node (Get-UiLayout -Label 'counter1'))
+        if (@($counterNodes | Where-Object { $_.attributes.text -eq 'Current count: 1' }).Count -gt 0) { break }
+        Start-Sleep -Milliseconds 500
+    } while ([DateTime]::UtcNow -lt $deadline)
+    if (@($counterNodes | Where-Object { $_.attributes.text -eq 'Current count: 1' }).Count -eq 0) {
+        throw 'Counter page did not increment to 1.'
+    }
+    return [ordered]@{
+        status = 'PASS'
+        homeText = 'Hello, world!'
+        counterInitial = 0
+        counterAfterClick = 1
+    }
+}
+
 New-Item -ItemType Directory -Path $EvidenceRoot -Force | Out-Null
 $evidenceRootPath = (Resolve-Path -LiteralPath $EvidenceRoot).Path
 $publicEvidencePath = Join-Path $evidenceRootPath "api$ApiLevel-$Abi-evidence.json"
@@ -170,7 +273,13 @@ try {
     }
 
     $availableTargetsResult = Invoke-Hdc -Arguments @('list', 'targets')
-    $availableTargets = @($availableTargetsResult.Output | ForEach-Object { $_.Trim() } | Where-Object { $_ -and $_ -ne '[Empty]' })
+    $availableTargets = @($availableTargetsResult.Output | ForEach-Object {
+        $line = $_.Trim()
+        if (-not $line -or $line -eq '[Empty]') { return }
+        $parts = @($line -split '\s+')
+        if ($parts -contains 'Offline') { return }
+        $parts[0]
+    })
     if ($Target) {
         if ($availableTargets -notcontains $Target) { throw 'The requested HDC target was not found.' }
         $targets = @($Target)
@@ -285,7 +394,10 @@ try {
         throw "Expected exactly one PID-bound Dotnet10Smoke record, found $($smokeRecords.Count)."
     }
     $log = $smokeRecords[0]
-    Save-PrivateOutput -Name 'hdc-hilog.txt' -Value $hilogResult.Text | Out-Null
+    $privateHilogOutput = Save-PrivateOutput -Name 'hdc-hilog.txt' -Value $hilogResult.Text
+    if ($hilogResult.Text -match '(?i)\bcppcrash\b|fatal signal|process died') {
+        throw 'Device HiLog contains a native crash marker.'
+    }
 
     $required = @(
         'status=PASS',
@@ -312,6 +424,18 @@ try {
     }
     if ((Get-Sha256 -Path $snapshotPath) -cne $hapSnapshotSha256) {
         throw 'The HAP snapshot changed during device acceptance.'
+    }
+
+    $ui = if ($RequireUiInteraction) {
+        Invoke-UiInteractionAcceptance
+    }
+    else {
+        [ordered]@{ status = 'NOT_REQUESTED' }
+    }
+    if ($RequireUiInteraction) {
+        $uiOutput = Save-PrivateOutput -Name 'ui-interaction-attestation.json' `
+            -Value ($ui | ConvertTo-Json -Depth 4)
+        $ui['outputSha256'] = $uiOutput.Sha256
     }
 
     $logPath = $publicLogPath
@@ -387,6 +511,12 @@ try {
             pidBound = $true
             hilogSha256 = Get-Sha256 -Path $logPath
         }
+        crashAttestation = [ordered]@{
+            status = 'PASS'
+            forbiddenMarkers = @('cppcrash', 'fatal signal', 'process died')
+            outputSha256 = $privateHilogOutput.Sha256
+        }
+        uiAttestation = $ui
         certificateChainSha256 = $signature.CertificateChainSha256
         profileCertificateSha256 = $signature.ProfileCertificateSha256
         signerCertificateSha256 = $signature.SignerCertificateSha256
